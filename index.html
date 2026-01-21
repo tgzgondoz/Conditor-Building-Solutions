@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conditor Building Solutions | Professional Engineering & Construction Services</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .hero-carousel {
+            height: 700px;
+        }
+        
+        @media (max-width: 768px) {
+            .hero-carousel {
+                height: 500px;
+            }
+        }
+        
+        .carousel-slide {
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .carousel-indicator {
+            transition: all 0.3s ease;
+        }
+        
+        .carousel-indicator.active {
+            width: 40px;
+            background-color: #3b82f6;
+        }
+        
+        .progress-bar {
+            height: 3px;
+            width: 0;
+            background-color: #3b82f6;
+            transition: width 8s linear;
+        }
+        
+        .carousel-indicator.active .progress-bar {
+            width: 100%;
+        }
+        
+        .content-box {
+            transition: transform 0.3s ease;
+        }
+        
+        .content-box:hover {
+            transform: translateY(-5px);
+        }
+        
+        .home-careers-bg {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .social-feed {
+            min-height: 400px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .social-feed::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.7) 100%);
+            z-index: 1;
+        }
+        
+        .social-feed-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .footer-bg {
+            background-color: #0f172a;
+        }
+        
+        .nav-shadow {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+        
+        .mega-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background: white;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+        
+        .mega-menu.active {
+            display: block;
+        }
+        
+        .scroll-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background-color: #3b82f6;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 100;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+        
+        .scroll-to-top.visible {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Top Navigation Bar -->
+    <nav class="fixed top-0 w-full bg-white nav-shadow z-50">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    
+                    <h1 class="text-2xl font-bold text-gray-900">Conditor<span class="text-blue-600">.</span></h1>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden lg:flex space-x-8">
+                    <div class="relative group">
+                        <button class="text-gray-700 hover:text-blue-600 font-medium py-2 flex items-center">
+                            About Us <i class="fas fa-chevron-down ml-2 text-xs"></i>
+                        </button>
+                        <div class="mega-menu">
+                            <div class="container mx-auto px-4 py-8">
+                                <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+                                    <div class="lg:col-span-1">
+                                        <div class="bg-gray-100 p-6 h-full">
+                                            <h3 class="text-xl font-bold text-gray-800 mb-3">Building Excellence</h3>
+                                            <p class="text-gray-600 mb-4">At Conditor, we believe infrastructure creates opportunity for everyone.</p>
+                                            <a href="#" class="text-blue-600 font-medium inline-flex items-center">Learn More <i class="fas fa-arrow-right ml-2"></i></a>
+                                        </div>
+                                    </div>
+                                    <div class="lg:col-span-3">
+                                        <h3 class="text-xl font-bold text-gray-800 mb-6">A Look at Life Inside Conditor</h3>
+                                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                                            <div>
+                                                <div class="h-40 bg-gray-200 mb-4" style="background-image: url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80'); background-size: cover; background-position: center;"></div>
+                                                <a href="#" class="text-blue-600 font-medium mb-2 block">About Us</a>
+                                                <p class="text-gray-600 text-sm">We deliver quality construction and engineering solutions worldwide.</p>
+                                            </div>
+                                            <div>
+                                                <div class="h-40 bg-gray-200 mb-4" style="background-image: url('https://images.unsplash.com/photo-1541888946425-d81bb19240f5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80'); background-size: cover; background-position: center;"></div>
+                                                <a href="#" class="text-blue-600 font-medium mb-2 block">Innovation & Technology</a>
+                                                <p class="text-gray-600 text-sm">Harnessing the power of technology to deliver transformative outcomes.</p>
+                                            </div>
+                                            <div>
+                                                <div class="h-40 bg-gray-200 mb-4" style="background-image: url('https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80'); background-size: cover; background-position: center;"></div>
+                                                <a href="#" class="text-blue-600 font-medium mb-2 block">Sustainability</a>
+                                                <p class="text-gray-600 text-sm">We have a responsibility to protect and enhance the world's natural systems.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="relative group">
+                        <button class="text-gray-700 hover:text-blue-600 font-medium py-2 flex items-center">
+                            Our Work <i class="fas fa-chevron-down ml-2 text-xs"></i>
+                        </button>
+                        <div class="mega-menu">
+                            <div class="container mx-auto px-4 py-8">
+                                <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+                                    <div class="lg:col-span-1">
+                                        <div class="bg-gray-100 p-6 h-full">
+                                            <h3 class="text-xl font-bold text-gray-800 mb-3">Trusted Construction Firm</h3>
+                                            <p class="text-gray-600 mb-4">We partner with our clients to deliver exceptional construction projects.</p>
+                                            <a href="#" class="text-blue-600 font-medium inline-flex items-center">View Factsheet <i class="fas fa-arrow-right ml-2"></i></a>
+                                        </div>
+                                    </div>
+                                    <div class="lg:col-span-3">
+                                        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                                            <div>
+                                                <h3 class="text-xl font-bold text-gray-800 mb-4">Markets</h3>
+                                                <ul class="space-y-3">
+                                                    <li><a href="#" class="text-gray-600 hover:text-blue-600">Commercial Construction</a></li>
+                                                    <li><a href="#" class="text-gray-600 hover:text-blue-600">Residential Development</a></li>
+                                                    <li><a href="#" class="text-gray-600 hover:text-blue-600">Industrial Facilities</a></li>
+                                                    <li><a href="#" class="text-gray-600 hover:text-blue-600">Infrastructure</a></li>
+                                                    <li><a href="#" class="text-blue-600 font-medium mt-4 inline-block">View All Markets →</a></li>
+                                                </ul>
+                                            </div>
+                                            <div>
+                                                <h3 class="text-xl font-bold text-gray-800 mb-4">Services</h3>
+                                                <ul class="space-y-3">
+                                                    <li><a href="#" class="text-gray-600 hover:text-blue-600">Architecture & Design</a></li>
+                                                    <li><a href="#" class="text-gray-600 hover:text-blue-600">Construction Management</a></li>
+                                                    <li><a href="#" class="text-gray-600 hover:text-blue-600">Engineering</a></li>
+                                                    <li><a href="#" class="text-gray-600 hover:text-blue-600">Project Management</a></li>
+                                                    <li><a href="#" class="text-blue-600 font-medium mt-4 inline-block">View All Services →</a></li>
+                                                </ul>
+                                            </div>
+                                            <div>
+                                                <h3 class="text-xl font-bold text-gray-800 mb-4">Projects</h3>
+                                                <ul class="space-y-3">
+                                                    <li><a href="#" class="text-gray-600 hover:text-blue-600">Skyline Tower</a></li>
+                                                    <li><a href="#" class="text-gray-600 hover:text-blue-600">Riverfront Residences</a></li>
+                                                    <li><a href="#" class="text-gray-600 hover:text-blue-600">Tech Manufacturing Hub</a></li>
+                                                    <li><a href="#" class="text-gray-600 hover:text-blue-600">Urban Renewal Project</a></li>
+                                                    <li><a href="#" class="text-blue-600 font-medium mt-4 inline-block">View All Projects →</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="relative group">
+                        <button class="text-gray-700 hover:text-blue-600 font-medium py-2 flex items-center">
+                            Insights <i class="fas fa-chevron-down ml-2 text-xs"></i>
+                        </button>
+                        <div class="mega-menu">
+                            <div class="container mx-auto px-4 py-8">
+                                <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+                                    <div class="lg:col-span-1">
+                                        <div class="bg-gray-100 p-6 h-full">
+                                            <h3 class="text-xl font-bold text-gray-800 mb-3">Industry Insights</h3>
+                                            <p class="text-gray-600 mb-4">The world of construction is evolving. Our expertise is your asset.</p>
+                                            <a href="#" class="text-blue-600 font-medium inline-flex items-center">Explore Insights <i class="fas fa-arrow-right ml-2"></i></a>
+                                        </div>
+                                    </div>
+                                    <div class="lg:col-span-3">
+                                        <h3 class="text-xl font-bold text-gray-800 mb-6">Thought Leadership</h3>
+                                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                                            <div>
+                                                <div class="h-40 bg-gray-200 mb-4" style="background-image: url('https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80'); background-size: cover; background-position: center;"></div>
+                                                <a href="#" class="text-blue-600 font-medium mb-2 block">Construction Innovation</a>
+                                                <p class="text-gray-600 text-sm">Discover how innovative construction methods deliver positive change.</p>
+                                            </div>
+                                            <div>
+                                                <div class="h-40 bg-gray-200 mb-4" style="background-image: url('https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80'); background-size: cover; background-position: center;"></div>
+                                                <a href="#" class="text-blue-600 font-medium mb-2 block">Our Blog</a>
+                                                <p class="text-gray-600 text-sm">Discussions on the biggest challenges in construction today and tomorrow.</p>
+                                            </div>
+                                            <div>
+                                                <div class="h-40 bg-gray-200 mb-4" style="background-image: url('https://images.unsplash.com/photo-1487956382158-bb926046304a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80'); background-size: cover; background-position: center;"></div>
+                                                <a href="#" class="text-blue-600 font-medium mb-2 block">Sustainable Building</a>
+                                                <p class="text-gray-600 text-sm">How sustainable practices are transforming the construction industry.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <a href="#" class="text-gray-700 hover:text-blue-600 font-medium py-2">Careers</a>
+                    <a href="#" class="text-gray-700 hover:text-blue-600 font-medium py-2">News</a>
+                    <a href="#" class="text-gray-700 hover:text-blue-600 font-medium py-2">Contact</a>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-button" class="lg:hidden text-gray-700">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Carousel -->
+    <section class="hero-carousel mt-16 relative">
+        <!-- Slide 1 -->
+        <div class="carousel-slide absolute inset-0" style="background-image: url('https://images.unsplash.com/photo-1541888946425-d81bb19240f5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80');">
+            <div class="absolute inset-0 bg-gradient-to-r from-black/70 to-transparent"></div>
+            <div class="container mx-auto px-4 h-full flex items-center">
+                <div class="max-w-2xl text-white">
+                    <p class="text-blue-400 font-medium mb-2">DELIVERING EXCELLENCE</p>
+                    <h2 class="text-4xl md:text-5xl font-bold mb-6">Conditor Annual Report 2025</h2>
+                    <p class="text-xl mb-8">Explore the progress, achievements, and impact that defined our 2025</p>
+                    <a href="#" class="inline-flex items-center bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 font-medium">
+                        Download the report <i class="fas fa-chevron-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Slide 2 -->
+        <div class="carousel-slide absolute inset-0 opacity-0" style="background-image: url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80');">
+            <div class="absolute inset-0 bg-gradient-to-r from-black/70 to-transparent"></div>
+            <div class="container mx-auto px-4 h-full flex items-center">
+                <div class="max-w-2xl text-white">
+                    <p class="text-blue-400 font-medium mb-2">INDUSTRY INTELLIGENCE</p>
+                    <h2 class="text-4xl md:text-5xl font-bold mb-6">Construction Market Review 2026</h2>
+                    <p class="text-xl mb-8">Essential analysis, market intelligence and thought leadership for the built environment</p>
+                    <a href="#" class="inline-flex items-center bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 font-medium">
+                        Read the report <i class="fas fa-chevron-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Slide 3 -->
+        <div class="carousel-slide absolute inset-0 opacity-0" style="background-image: url('https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80');">
+            <div class="absolute inset-0 bg-gradient-to-r from-black/70 to-transparent"></div>
+            <div class="container mx-auto px-4 h-full flex items-center">
+                <div class="max-w-2xl text-white">
+                    <p class="text-blue-400 font-medium mb-2">INNOVATION</p>
+                    <h2 class="text-4xl md:text-5xl font-bold mb-6">Building the Future</h2>
+                    <p class="text-xl mb-8">With global expertise and local insights, we deliver reliable and resilient construction solutions</p>
+                    <a href="#" class="inline-flex items-center bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 font-medium">
+                        Discover more <i class="fas fa-chevron-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Carousel Indicators -->
+        <div class="absolute bottom-8 left-0 right-0">
+            <div class="container mx-auto px-4">
+                <div class="flex space-x-4" id="carousel-indicators">
+                    <div class="carousel-indicator active w-8 h-1 bg-gray-400 overflow-hidden cursor-pointer">
+                        <div class="progress-bar"></div>
+                    </div>
+                    <div class="carousel-indicator w-8 h-1 bg-gray-400 overflow-hidden cursor-pointer">
+                        <div class="progress-bar"></div>
+                    </div>
+                    <div class="carousel-indicator w-8 h-1 bg-gray-400 overflow-hidden cursor-pointer">
+                        <div class="progress-bar"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hero Navigation Items -->
+    <section class="bg-gray-100 py-4">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-wrap justify-center gap-4">
+                <div class="flex items-center space-x-2 cursor-pointer">
+                    <div class="w-24 h-1 bg-gray-300 overflow-hidden">
+                        <div class="h-full bg-blue-600 w-full"></div>
+                    </div>
+                    <span class="text-sm font-medium text-gray-700">ANNUAL REPORT 2025</span>
+                </div>
+                <div class="flex items-center space-x-2 cursor-pointer">
+                    <div class="w-24 h-1 bg-gray-300 overflow-hidden">
+                        <div class="h-full bg-gray-400 w-0"></div>
+                    </div>
+                    <span class="text-sm font-medium text-gray-700">MARKET REVIEW</span>
+                </div>
+                <div class="flex items-center space-x-2 cursor-pointer">
+                    <div class="w-24 h-1 bg-gray-300 overflow-hidden">
+                        <div class="h-full bg-gray-400 w-0"></div>
+                    </div>
+                    <span class="text-sm font-medium text-gray-700">BUILDING THE FUTURE</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Home Feed Section -->
+    <section class="py-12 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <div class="lg:col-span-2">
+                    <h3 class="text-2xl font-light text-gray-800 mb-6">Conditor is the trusted construction leader committed to delivering excellence in every project.</h3>
+                    <a href="#" class="inline-flex items-center border border-blue-600 text-blue-600 hover:bg-blue-50 px-6 py-3 font-medium">
+                        About us <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+                <div class="lg:col-span-1">
+                    <h4 class="text-xl font-bold text-gray-800 mb-6 pb-3 border-b border-gray-200">News</h4>
+                    <div class="space-y-6">
+                        <div>
+                            <p class="text-sm text-gray-500 mb-1">Nov 18, 2025</p>
+                            <a href="#" class="text-gray-800 hover:text-blue-600 font-medium">Conditor reports fourth quarter and full year fiscal 2025 results</a>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-500 mb-1">Nov 5, 2025</p>
+                            <a href="#" class="text-gray-800 hover:text-blue-600 font-medium">Conditor awarded major infrastructure project in downtown development</a>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-500 mb-1">Oct 22, 2025</p>
+                            <a href="#" class="text-gray-800 hover:text-blue-600 font-medium">Conditor recognized for sustainability leadership in construction industry</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Content Grid -->
+    <section class="py-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Large Box -->
+                <div class="md:col-span-2 lg:col-span-2">
+                    <div class="content-box bg-gray-900 overflow-hidden h-96 relative">
+                        <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80');"></div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
+                            <p class="text-blue-400 font-medium mb-2">Insights</p>
+                            <h3 class="text-2xl font-bold mb-4">Sustainable Construction</h3>
+                            <a href="#" class="inline-flex items-center text-white font-medium">
+                                Learn more <i class="fas fa-arrow-right ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Small Box 1 -->
+                <div class="md:col-span-1 lg:col-span-1">
+                    <div class="content-box bg-gray-900 overflow-hidden h-96 relative">
+                        <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1487956382158-bb926046304a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80');"></div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
+                            <p class="text-blue-400 font-medium mb-2">Project</p>
+                            <h3 class="text-xl font-bold mb-4">Skyline Tower</h3>
+                            <a href="#" class="inline-flex items-center text-white font-medium">
+                                View project <i class="fas fa-arrow-right ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Small Box 2 -->
+                <div class="md:col-span-1 lg:col-span-1">
+                    <div class="content-box bg-gray-900 overflow-hidden h-96 relative">
+                        <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80');"></div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
+                            <p class="text-blue-400 font-medium mb-2">Report</p>
+                            <h3 class="text-xl font-bold mb-4">Construction Innovation</h3>
+                            <a href="#" class="inline-flex items-center text-white font-medium">
+                                Read report <i class="fas fa-arrow-right ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Medium Box 1 -->
+                <div class="md:col-span-1 lg:col-span-2">
+                    <div class="content-box bg-gray-900 overflow-hidden h-80 relative">
+                        <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1541888946425-d81bb19240f5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80');"></div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
+                            <p class="text-blue-400 font-medium mb-2">Article</p>
+                            <h3 class="text-xl font-bold mb-4">Building the construction workforce of the future</h3>
+                            <a href="#" class="inline-flex items-center text-white font-medium">
+                                Read article <i class="fas fa-arrow-right ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Medium Box 2 -->
+                <div class="md:col-span-1 lg:col-span-2">
+                    <div class="content-box bg-gray-900 overflow-hidden h-80 relative">
+                        <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80');"></div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
+                            <p class="text-blue-400 font-medium mb-2">People</p>
+                            <h3 class="text-xl font-bold mb-4">Meet our construction experts and leaders</h3>
+                            <a href="#" class="inline-flex items-center text-white font-medium">
+                                Meet the team <i class="fas fa-arrow-right ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Careers Section -->
+    <section class="home-careers-bg py-20">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="text-white">
+                    <p class="text-blue-400 font-medium mb-2">Career opportunities</p>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-6">At Conditor, we're driven by a common purpose to build a better world</h2>
+                    <p class="text-gray-200 text-lg mb-8">Ideas have no borders and this ethos is embedded in our culture. Join us in creating legacies for generations to come.</p>
+                    <form class="flex flex-col sm:flex-row gap-4">
+                        <input type="text" placeholder="Search for jobs" class="flex-grow px-6 py-3 text-gray-800">
+                        <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 font-medium">
+                            Search
+                        </button>
+                    </form>
+                </div>
+                <div class="hidden lg:block">
+                    <div class="h-64 bg-gradient-to-r from-blue-900/30 to-blue-600/30"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Media Feeds -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- LinkedIn Feed -->
+                <div class="social-feed overflow-hidden">
+                    <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1487956382158-bb926046304a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80');"></div>
+                    <div class="social-feed-content p-8 h-full flex flex-col justify-end">
+                        <div class="mb-6">
+                            <p class="text-blue-400 font-medium mb-2 inline-flex items-center">
+                                LinkedIn <i class="fab fa-linkedin-in ml-2"></i>
+                            </p>
+                            <h3 class="text-2xl font-bold text-white mb-4">Redefining construction excellence</h3>
+                            <p class="text-gray-200">Our latest project has been recognized for its innovative design and sustainable approach. Explore the unique features of this landmark construction.</p>
+                        </div>
+                        <a href="#" class="inline-flex items-center text-white font-medium">
+                            Follow us <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Instagram Feed -->
+                <div class="social-feed overflow-hidden">
+                    <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1541888946425-d81bb19240f5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80');"></div>
+                    <div class="social-feed-content p-8 h-full flex flex-col justify-end">
+                        <div class="mb-6">
+                            <p class="text-blue-400 font-medium mb-2 inline-flex items-center">
+                                #ConditorVoices <i class="fab fa-instagram ml-2"></i>
+                            </p>
+                            <h3 class="text-2xl font-bold text-white mb-4">Connecting with tomorrow's talent</h3>
+                            <p class="text-gray-200">"Last month, I had the privilege of joining my Conditor team to host and interview upcoming construction and engineering graduates."</p>
+                        </div>
+                        <a href="#" class="inline-flex items-center text-white font-medium">
+                            Continue reading <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer-bg text-white pt-12 pb-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-12">
+                <div class="lg:col-span-2">
+                    <div class="flex items-center mb-6">
+                      
+                        <h2 class="text-2xl font-bold">Conditor<span class="text-blue-400">.</span></h2>
+                    </div>
+                    <p class="text-gray-400 mb-6">The trusted construction leader committed to delivering excellence in every project.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-gray-800 flex items-center justify-center hover:bg-blue-600">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 flex items-center justify-center hover:bg-blue-600">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 flex items-center justify-center hover:bg-blue-600">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 flex items-center justify-center hover:bg-blue-600">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 flex items-center justify-center hover:bg-blue-600">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-6">Company</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-400 hover:text-white">About Conditor</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Markets</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Services</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Projects</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-6">Resources</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Careers</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Offices</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Contact Us</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Site Map</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-6">Insights</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Industry Insights</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">News</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Blog</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Social Media</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="pt-8 border-t border-gray-800">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-gray-400 mb-4 md:mb-0">© 2026 Conditor Building Solutions. All Rights Reserved.</p>
+                    <div class="flex flex-wrap gap-4">
+                        <a href="#" class="text-gray-400 hover:text-white text-sm">Terms of Use</a>
+                        <span class="text-gray-600">|</span>
+                        <a href="#" class="text-gray-400 hover:text-white text-sm">Privacy Policy</a>
+                        <span class="text-gray-600">|</span>
+                        <a href="#" class="text-gray-400 hover:text-white text-sm">Cookie Policy</a>
+                        <span class="text-gray-600">|</span>
+                        <a href="#" class="text-gray-400 hover:text-white text-sm">Cookie Settings</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <div class="scroll-to-top" id="scrollToTopBtn">
+        <i class="fas fa-chevron-up"></i>
+    </div>
+
+    <script>
+        // Carousel functionality
+        const slides = document.querySelectorAll('.carousel-slide');
+        const indicators = document.querySelectorAll('.carousel-indicator');
+        const progressBars = document.querySelectorAll('.progress-bar');
+        let currentSlide = 0;
+        let slideInterval;
+        
+        function showSlide(index) {
+            // Hide all slides
+            slides.forEach(slide => {
+                slide.style.opacity = '0';
+                slide.style.zIndex = '0';
+            });
+            
+            // Remove active class from all indicators
+            indicators.forEach(indicator => {
+                indicator.classList.remove('active');
+                indicator.classList.remove('w-10');
+                indicator.classList.add('w-8');
+            });
+            
+            // Reset all progress bars
+            progressBars.forEach(bar => {
+                bar.style.width = '0';
+            });
+            
+            // Show current slide
+            slides[index].style.opacity = '1';
+            slides[index].style.zIndex = '10';
+            
+            // Activate current indicator
+            indicators[index].classList.add('active');
+            indicators[index].classList.add('w-10');
+            indicators[index].classList.remove('w-8');
+            
+            // Start progress bar animation
+            progressBars[index].style.width = '100%';
+            
+            currentSlide = index;
+        }
+        
+        function nextSlide() {
+            let next = currentSlide + 1;
+            if (next >= slides.length) next = 0;
+            showSlide(next);
+        }
+        
+        function startCarousel() {
+            // Start with first slide
+            showSlide(0);
+            
+            // Set up interval for automatic sliding
+            clearInterval(slideInterval);
+            slideInterval = setInterval(nextSlide, 8000);
+        }
+        
+        // Add click events to indicators
+        indicators.forEach((indicator, index) => {
+            indicator.addEventListener('click', () => {
+                clearInterval(slideInterval);
+                showSlide(index);
+                slideInterval = setInterval(nextSlide, 8000);
+            });
+        });
+        
+        // Mega menu functionality
+        const megaMenuTriggers = document.querySelectorAll('.group');
+        
+        megaMenuTriggers.forEach(trigger => {
+            const megaMenu = trigger.querySelector('.mega-menu');
+            
+            trigger.addEventListener('mouseenter', () => {
+                megaMenu.classList.add('active');
+            });
+            
+            trigger.addEventListener('mouseleave', () => {
+                megaMenu.classList.remove('active');
+            });
+        });
+        
+        // Mobile menu functionality
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const desktopMenu = document.querySelector('.hidden.lg\\:flex');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            alert('Mobile menu would open here. In a full implementation, this would show a mobile navigation menu.');
+        });
+        
+        // Scroll to top button
+        const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                scrollToTopBtn.classList.add('visible');
+            } else {
+                scrollToTopBtn.classList.remove('visible');
+            }
+        });
+        
+        scrollToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Initialize carousel on page load
+        document.addEventListener('DOMContentLoaded', startCarousel);
+    </script>
+</body>
+</html>
