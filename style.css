@@ -81,271 +81,36 @@
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
-/* Enhanced Mega Menu Styles */
-.mega-menu {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    background: white;
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-    z-index: 1000;
-    opacity: 0;
-    transform: translateY(-10px);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    border-top: 3px solid #3b82f6;
-    border-radius: 0 0 12px 12px;
-    overflow: hidden;
-    pointer-events: none;
-}
-
-.mega-menu.active {
-    display: block;
-    opacity: 1;
-    transform: translateY(0);
-    pointer-events: auto;
-}
-
-.mega-menu-content {
-    padding: 32px 0;
-    background: linear-gradient(to right, #f8fafc 0%, #ffffff 25%);
-}
-
-.mega-menu-left-panel {
-    background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
-    border-radius: 8px;
-    padding: 24px;
-    height: 100%;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
-}
-
-.mega-menu-left-panel:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-}
-
-.mega-menu-section-title {
-    color: #1e293b;
-    font-weight: 700;
-    font-size: 1.5rem;
-    margin-bottom: 20px;
+/* Clean Navigation Styles - No mega menus */
+.nav-item {
     position: relative;
-    padding-bottom: 12px;
+    transition: color 0.3s ease;
 }
 
-.mega-menu-section-title::after {
+.nav-item:hover {
+    color: #3b82f6;
+}
+
+/* Simple underline effect on hover */
+.nav-item::after {
     content: '';
     position: absolute;
     bottom: 0;
     left: 0;
-    width: 40px;
-    height: 3px;
-    background: #3b82f6;
-    border-radius: 2px;
-}
-
-.mega-menu-link {
-    display: block;
-    color: #475569;
-    padding: 8px 0;
-    transition: all 0.2s ease;
-    position: relative;
-    padding-left: 16px;
-}
-
-.mega-menu-link::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 6px;
-    height: 6px;
-    background: #cbd5e1;
-    border-radius: 50%;
-    transition: all 0.2s ease;
-}
-
-.mega-menu-link:hover {
-    color: #3b82f6;
-    padding-left: 20px;
-}
-
-.mega-menu-link:hover::before {
-    background: #3b82f6;
-    width: 8px;
-    height: 8px;
-}
-
-.mega-menu-view-all {
-    display: inline-flex;
-    align-items: center;
-    color: #3b82f6;
-    font-weight: 600;
-    margin-top: 20px;
-    padding: 8px 16px;
-    background: rgba(59, 130, 246, 0.1);
-    border-radius: 6px;
-    transition: all 0.2s ease;
-}
-
-.mega-menu-view-all:hover {
-    background: rgba(59, 130, 246, 0.2);
-    transform: translateX(4px);
-}
-
-.mega-menu-view-all i {
-    transition: transform 0.2s ease;
-}
-
-.mega-menu-view-all:hover i {
-    transform: translateX(4px);
-}
-
-.mega-menu-grid {
-    gap: 24px;
-}
-
-.mega-menu-column {
-    padding: 8px 0;
-}
-
-.mega-menu-column-title {
-    font-size: 1.1rem;
-    font-weight: 700;
-    color: #334155;
-    margin-bottom: 16px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.mega-menu-column-title::before {
-    content: '';
-    width: 4px;
-    height: 16px;
-    background: #3b82f6;
-    border-radius: 2px;
-}
-
-.mega-menu-feature-card {
-    border-radius: 8px;
-    overflow: hidden;
-    background: white;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
-    border: 1px solid #e2e8f0;
-}
-
-.mega-menu-feature-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-    border-color: #3b82f6;
-}
-
-.mega-menu-feature-image {
-    height: 160px;
-    background-size: cover;
-    background-position: center;
-    transition: transform 0.5s ease;
-}
-
-.mega-menu-feature-card:hover .mega-menu-feature-image {
-    transform: scale(1.05);
-}
-
-.mega-menu-feature-content {
-    padding: 20px;
-}
-
-.mega-menu-feature-title {
-    color: #3b82f6;
-    font-weight: 600;
-    font-size: 1rem;
-    margin-bottom: 8px;
-    display: block;
-    text-decoration: none;
-}
-
-.mega-menu-feature-title:hover {
-    color: #2563eb;
-    text-decoration: underline;
-}
-
-.mega-menu-feature-desc {
-    color: #64748b;
-    font-size: 0.875rem;
-    line-height: 1.5;
-}
-
-/* Navigation hover effect */
-.nav-item {
-    position: relative;
-}
-
-.nav-item > a,
-.nav-item > button {
-    position: relative;
-}
-
-.nav-item > a::after,
-.nav-item > button::after {
-    content: '';
-    position: absolute;
-    bottom: -4px;
-    left: 50%;
-    transform: translateX(-50%);
     width: 0;
-    height: 3px;
-    background: #3b82f6;
+    height: 2px;
+    background-color: #3b82f6;
     transition: width 0.3s ease;
-    border-radius: 2px;
 }
 
-.nav-item > a:hover::after,
-.nav-item > button:hover::after {
+.nav-item:hover::after {
     width: 100%;
 }
 
-/* Chevron rotation animation */
-.group:hover .fa-chevron-down {
-    transform: rotate(180deg);
-}
-
-.fa-chevron-down {
-    transition: transform 0.3s ease;
-}
-
-/* Prevent mega menu from overlapping when hidden */
-.group {
-    position: static;
-}
-
-/* Mobile responsiveness for mega menus */
-@media (max-width: 1024px) {
-    .mega-menu {
-        position: fixed;
-        top: 70px;
-        left: 0;
-        right: 0;
-        max-height: calc(100vh - 70px);
-        overflow-y: auto;
-        border-radius: 0;
-    }
-    
-    .mega-menu-content {
-        padding: 20px 0;
-    }
-    
-    .mega-menu-grid {
-        gap: 16px;
-    }
-    
-    .mega-menu-feature-card {
-        margin-bottom: 16px;
-    }
+/* For anchor tags specifically */
+nav a.nav-item {
+    display: inline-block;
+    padding: 0.5rem 0;
 }
 
 /* Scroll to top button */
@@ -404,15 +169,20 @@
 }
 
 /* Improve image loading */
-.mega-menu-feature-image,
 .carousel-slide,
 .content-box > .absolute {
     background-color: #f3f4f6;
 }
 
-/* Better focus states for accessibility */
-a:focus,
-button:focus {
+/* Remove outline border on focus for navigation items */
+nav a:focus,
+nav button:focus {
+    outline: none;
+}
+
+/* Keep focus for accessibility but with less intrusive styling */
+a:focus:not(nav a),
+button:focus:not(nav button) {
     outline: 2px solid #3b82f6;
     outline-offset: 2px;
 }
@@ -420,4 +190,21 @@ button:focus {
 /* Smooth scrolling */
 html {
     scroll-behavior: smooth;
+}
+
+/* Mobile navigation styling */
+@media (max-width: 1024px) {
+    nav a.nav-item {
+        padding: 0.75rem 1rem;
+        width: 100%;
+        border-bottom: 1px solid #e5e7eb;
+    }
+    
+    nav a.nav-item:last-child {
+        border-bottom: none;
+    }
+    
+    nav a.nav-item:hover::after {
+        width: 0; /* Remove underline effect on mobile for cleaner look */
+    }
 }

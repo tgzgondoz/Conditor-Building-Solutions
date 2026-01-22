@@ -209,136 +209,7 @@ class Carousel {
     }
 }
 
-// Mega Menu functionality
-class MegaMenu {
-    constructor() {
-        this.megaMenuTriggers = document.querySelectorAll('.group');
-        this.megaMenus = document.querySelectorAll('.mega-menu');
-        this.timeouts = new Map();
-        this.hoverDelay = 150; // ms delay for menu hide
-        this.isMobile = window.innerWidth < 1024;
-        
-        if (this.megaMenuTriggers.length === 0) return;
-        
-        this.init();
-        this.bindResize();
-    }
-    
-    init() {
-        this.megaMenuTriggers.forEach(trigger => {
-            const megaMenu = trigger.querySelector('.mega-menu');
-            if (!megaMenu) return;
-            
-            // Store timeout ID for this menu
-            this.timeouts.set(megaMenu, null);
-            
-            trigger.addEventListener('mouseenter', () => {
-                if (this.isMobile) return;
-                this.showMenu(megaMenu);
-            });
-            
-            trigger.addEventListener('mouseleave', (e) => {
-                if (this.isMobile) return;
-                this.hideMenu(megaMenu, e);
-            });
-            
-            // Handle mouse events on the mega menu itself
-            megaMenu.addEventListener('mouseenter', () => {
-                if (this.isMobile) return;
-                this.clearHideTimeout(megaMenu);
-            });
-            
-            megaMenu.addEventListener('mouseleave', (e) => {
-                if (this.isMobile) return;
-                this.hideMenu(megaMenu, e);
-            });
-            
-            // Touch support for mobile
-            trigger.addEventListener('touchstart', (e) => {
-                if (!this.isMobile) return;
-                e.preventDefault();
-                this.toggleMenu(megaMenu);
-            });
-        });
-        
-        // Close menus when clicking outside
-        document.addEventListener('click', (e) => {
-            if (this.isMobile) {
-                this.closeAllMenus(e);
-            }
-        });
-    }
-    
-    showMenu(menu) {
-        // Close all other menus first
-        this.closeAllMenus();
-        
-        // Show the requested menu
-        this.clearHideTimeout(menu);
-        menu.classList.add('active');
-        
-        // Dispatch custom event
-        this.dispatchMenuEvent('megamenushow', menu);
-    }
-    
-    hideMenu(menu, e) {
-        if (e && e.relatedTarget && menu.contains(e.relatedTarget)) {
-            return; // Mouse moved into menu, don't hide
-        }
-        
-        const timeoutId = setTimeout(() => {
-            menu.classList.remove('active');
-            this.dispatchMenuEvent('megamenuhide', menu);
-        }, this.hoverDelay);
-        
-        this.timeouts.set(menu, timeoutId);
-    }
-    
-    toggleMenu(menu) {
-        if (menu.classList.contains('active')) {
-            menu.classList.remove('active');
-            this.dispatchMenuEvent('megamenuhide', menu);
-        } else {
-            this.showMenu(menu);
-        }
-    }
-    
-    clearHideTimeout(menu) {
-        const timeoutId = this.timeouts.get(menu);
-        if (timeoutId) {
-            clearTimeout(timeoutId);
-            this.timeouts.set(menu, null);
-        }
-    }
-    
-    closeAllMenus(excludeElement = null) {
-        this.megaMenus.forEach(menu => {
-            if (excludeElement && (menu === excludeElement || menu.contains(excludeElement))) {
-                return;
-            }
-            menu.classList.remove('active');
-            this.clearHideTimeout(menu);
-        });
-    }
-    
-    bindResize() {
-        window.addEventListener('resize', () => {
-            this.isMobile = window.innerWidth < 1024;
-            if (!this.isMobile) {
-                this.closeAllMenus();
-            }
-        });
-    }
-    
-    dispatchMenuEvent(eventName, menu) {
-        const event = new CustomEvent(eventName, {
-            detail: { menu }
-        });
-        document.dispatchEvent(event);
-    }
-}
-
-// Mobile Menu functionality
+// Mobile Menu functionality - Simplified
 class MobileMenu {
     constructor() {
         this.mobileMenuButton = document.getElementById('mobile-menu-button');
@@ -358,7 +229,8 @@ class MobileMenu {
         
         // Close menu when clicking outside
         document.addEventListener('click', (e) => {
-            if (this.isOpen && !this.mobileMenuButton.contains(e.target) && 
+            if (this.isOpen && 
+                !this.mobileMenuButton.contains(e.target) && 
                 !this.desktopMenu.contains(e.target)) {
                 this.closeMenu();
             }
@@ -370,6 +242,15 @@ class MobileMenu {
                 this.closeMenu();
             }
         });
+        
+        // Close menu when clicking a link
+        if (this.desktopMenu) {
+            this.desktopMenu.addEventListener('click', (e) => {
+                if (e.target.tagName === 'A') {
+                    this.closeMenu();
+                }
+            });
+        }
     }
     
     toggleMenu() {
@@ -384,9 +265,13 @@ class MobileMenu {
         this.desktopMenu.classList.remove('hidden');
         this.desktopMenu.classList.add('flex', 'flex-col', 'absolute', 'top-full', 
                                       'left-0', 'right-0', 'bg-white', 'shadow-lg', 
-                                      'p-6', 'space-y-4', 'animate-fade-in');
+                                      'p-6', 'space-y-4');
         this.mobileMenuButton.innerHTML = '<i class="fas fa-times text-2xl"></i>';
+        this.mobileMenuButton.classList.add('text-blue-600');
         this.isOpen = true;
+        
+        // Add animation
+        this.desktopMenu.style.animation = 'fadeInDown 0.3s ease-out';
         
         // Dispatch event
         this.dispatchMenuEvent('mobilemenuopen');
@@ -396,9 +281,13 @@ class MobileMenu {
         this.desktopMenu.classList.add('hidden');
         this.desktopMenu.classList.remove('flex', 'flex-col', 'absolute', 'top-full', 
                                          'left-0', 'right-0', 'bg-white', 'shadow-lg', 
-                                         'p-6', 'space-y-4', 'animate-fade-in');
+                                         'p-6', 'space-y-4');
         this.mobileMenuButton.innerHTML = '<i class="fas fa-bars text-2xl"></i>';
+        this.mobileMenuButton.classList.remove('text-blue-600');
         this.isOpen = false;
+        
+        // Remove animation
+        this.desktopMenu.style.animation = '';
         
         // Dispatch event
         this.dispatchMenuEvent('mobilemenuclose');
@@ -456,13 +345,41 @@ class ScrollToTop {
     }
 }
 
+// Smooth scrolling for anchor links
+class SmoothScroll {
+    constructor() {
+        this.init();
+    }
+    
+    init() {
+        // Add smooth scrolling to all anchor links
+        document.addEventListener('click', (e) => {
+            const target = e.target;
+            
+            // Check if clicked element is an anchor link with href starting with #
+            if (target.tagName === 'A' && target.getAttribute('href')?.startsWith('#')) {
+                e.preventDefault();
+                const targetId = target.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80, // Adjust for fixed header
+                        behavior: 'smooth'
+                    });
+                }
+            }
+        });
+    }
+}
+
 // Initialize all functionality
 class App {
     constructor() {
         this.carousel = null;
-        this.megaMenu = null;
         this.mobileMenu = null;
         this.scrollToTop = null;
+        this.smoothScroll = null;
         
         this.init();
     }
@@ -470,14 +387,14 @@ class App {
     init() {
         // Wait for DOM to be fully loaded
         document.addEventListener('DOMContentLoaded', () => {
+            // Add CSS animations
+            this.addAnimations();
+            
             // Initialize components
             this.carousel = new Carousel();
-            this.megaMenu = new MegaMenu();
             this.mobileMenu = new MobileMenu();
             this.scrollToTop = new ScrollToTop();
-            
-            // Add CSS animation for mobile menu
-            this.addAnimations();
+            this.smoothScroll = new SmoothScroll();
             
             // Dispatch app ready event
             this.dispatchAppReadyEvent();
@@ -492,15 +409,31 @@ class App {
     }
     
     addAnimations() {
-        // Add CSS for fade-in animation if not already present
+        // Add CSS for animations if not already present
         if (!document.querySelector('#custom-animations')) {
             const style = document.createElement('style');
             style.id = 'custom-animations';
             style.textContent = `
-                @keyframes fadeIn {
-                    from { opacity: 0; transform: translateY(-10px); }
-                    to { opacity: 1; transform: translateY(0); }
+                @keyframes fadeInDown {
+                    from {
+                        opacity: 0;
+                        transform: translateY(-10px);
+                    }
+                    to {
+                        opacity: 1;
+                        transform: translateY(0);
+                    }
                 }
+                
+                @keyframes fadeIn {
+                    from {
+                        opacity: 0;
+                    }
+                    to {
+                        opacity: 1;
+                    }
+                }
+                
                 .animate-fade-in {
                     animation: fadeIn 0.3s ease-out;
                 }
@@ -513,9 +446,9 @@ class App {
         const event = new CustomEvent('appready', {
             detail: {
                 carousel: this.carousel,
-                megaMenu: this.megaMenu,
                 mobileMenu: this.mobileMenu,
-                scrollToTop: this.scrollToTop
+                scrollToTop: this.scrollToTop,
+                smoothScroll: this.smoothScroll
             }
         });
         document.dispatchEvent(event);
@@ -528,17 +461,17 @@ const app = new App();
 // Make components available globally for debugging
 window.app = app;
 window.Carousel = Carousel;
-window.MegaMenu = MegaMenu;
 window.MobileMenu = MobileMenu;
 window.ScrollToTop = ScrollToTop;
+window.SmoothScroll = SmoothScroll;
 
 // Export for module usage if needed
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = {
         Carousel,
-        MegaMenu,
         MobileMenu,
         ScrollToTop,
+        SmoothScroll,
         App
     };
 }
