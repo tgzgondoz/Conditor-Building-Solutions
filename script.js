@@ -1,4 +1,4 @@
-// Carousel functionality
+// Carousel functionality - Flat Design Version
 class Carousel {
     constructor() {
         this.slides = document.querySelectorAll('.carousel-slide');
@@ -7,8 +7,8 @@ class Carousel {
         this.currentSlide = 0;
         this.slideInterval = null;
         this.isPaused = false;
-        this.autoPlayInterval = 8000; // 8 seconds
-        this.progressBarDuration = 8000; // 8 seconds
+        this.autoPlayInterval = 6000; // Reduced to 6 seconds
+        this.progressBarDuration = 6000; // Reduced to 6 seconds
         this.touchStartX = 0;
         this.touchEndX = 0;
         this.swipeThreshold = 50;
@@ -51,8 +51,6 @@ class Carousel {
         // Remove active class from all indicators
         this.indicators.forEach(indicator => {
             indicator.classList.remove('active');
-            indicator.classList.remove('w-10');
-            indicator.classList.add('w-8');
         });
         
         // Reset all progress bars
@@ -70,7 +68,7 @@ class Carousel {
         
         // Use requestAnimationFrame for smooth animation
         requestAnimationFrame(() => {
-            currentSlide.style.transition = 'opacity 0.5s ease';
+            currentSlide.style.transition = 'opacity 0.3s ease'; // Faster transition
             currentSlide.style.opacity = '1';
         });
         
@@ -78,20 +76,11 @@ class Carousel {
         const currentIndicator = this.indicators[index];
         if (currentIndicator) {
             currentIndicator.classList.add('active');
-            currentIndicator.classList.add('w-10');
-            currentIndicator.classList.remove('w-8');
         }
         
         // Start progress bar animation
         const currentProgressBar = this.progressBars[index];
         if (currentProgressBar) {
-            // Set container width for progress calculation
-            const container = currentProgressBar.parentElement;
-            if (container) {
-                const containerWidth = container.offsetWidth;
-                currentProgressBar.style.setProperty('--container-width', `${containerWidth}px`);
-            }
-            
             currentProgressBar.style.transition = `width ${this.progressBarDuration}ms linear`;
             currentProgressBar.style.width = '100%';
         }
@@ -174,8 +163,8 @@ class Carousel {
         
         const computedStyle = window.getComputedStyle(activeBar);
         const currentWidth = parseFloat(computedStyle.getPropertyValue('width'));
-        const containerWidth = parseFloat(computedStyle.getPropertyValue('--container-width')) || 
-                             activeBar.parentElement.offsetWidth;
+        const container = activeBar.parentElement;
+        const containerWidth = container ? container.offsetWidth : 100;
         
         if (containerWidth === 0) return this.progressBarDuration;
         
@@ -216,9 +205,6 @@ class Carousel {
         
         // Add swipe support for mobile
         this.addSwipeSupport();
-        
-        // Add focus handling for accessibility
-        this.addFocusHandling();
     }
     
     addSwipeSupport() {
@@ -247,17 +233,6 @@ class Carousel {
         }
     }
     
-    addFocusHandling() {
-        // Pause carousel when focus is inside carousel for accessibility
-        this.carouselContainer?.addEventListener('focusin', () => {
-            this.pauseCarousel();
-        });
-        
-        this.carouselContainer?.addEventListener('focusout', () => {
-            this.resumeCarousel();
-        });
-    }
-    
     dispatchSlideChangeEvent() {
         const event = new CustomEvent('carouselslidechange', {
             detail: {
@@ -269,7 +244,7 @@ class Carousel {
     }
 }
 
-// Mobile Menu functionality - Improved
+// Mobile Menu functionality - Flat Design Version
 class MobileMenu {
     constructor() {
         this.mobileMenuButton = document.getElementById('mobile-menu-button');
@@ -312,9 +287,6 @@ class MobileMenu {
                 }
             });
         });
-        
-        // Trap focus in mobile menu for accessibility
-        this.setupFocusTrap();
     }
     
     toggleMenu() {
@@ -326,102 +298,33 @@ class MobileMenu {
     }
     
     openMenu() {
-        // Show menu
+        // Show menu with flat design
         this.desktopMenu.classList.remove('hidden');
         this.desktopMenu.classList.add('flex', 'flex-col', 'absolute', 'top-full', 
-                                      'left-0', 'right-0', 'bg-white', 'shadow-lg', 
-                                      'p-6', 'space-y-4', 'animate-fade-in');
+                                      'left-0', 'right-0', 'bg-white', 
+                                      'p-4', 'space-y-2', 'border-t', 'border-gray-200');
         
         // Update button
-        this.mobileMenuButton.innerHTML = '<i class="fas fa-times text-2xl"></i>';
-        this.mobileMenuButton.setAttribute('aria-expanded', 'true');
-        this.mobileMenuButton.classList.add('text-blue-600');
+        this.mobileMenuButton.innerHTML = '<i class="fas fa-times"></i>';
         
         this.isOpen = true;
-        
-        // Trap focus
-        this.trapFocus();
-        
-        // Dispatch event
-        this.dispatchMenuEvent('mobilemenuopen');
     }
     
     closeMenu() {
         // Hide menu
         this.desktopMenu.classList.add('hidden');
         this.desktopMenu.classList.remove('flex', 'flex-col', 'absolute', 'top-full', 
-                                         'left-0', 'right-0', 'bg-white', 'shadow-lg', 
-                                         'p-6', 'space-y-4', 'animate-fade-in');
+                                         'left-0', 'right-0', 'bg-white', 
+                                         'p-4', 'space-y-2', 'border-t', 'border-gray-200');
         
         // Update button
-        this.mobileMenuButton.innerHTML = '<i class="fas fa-bars text-2xl"></i>';
-        this.mobileMenuButton.setAttribute('aria-expanded', 'false');
-        this.mobileMenuButton.classList.remove('text-blue-600');
+        this.mobileMenuButton.innerHTML = '<i class="fas fa-bars"></i>';
         
         this.isOpen = false;
-        
-        // Release focus trap
-        this.releaseFocus();
-        
-        // Dispatch event
-        this.dispatchMenuEvent('mobilemenuclose');
-    }
-    
-    setupFocusTrap() {
-        this.firstFocusableElement = null;
-        this.lastFocusableElement = null;
-    }
-    
-    trapFocus() {
-        // Get all focusable elements in the menu
-        const focusableElements = this.desktopMenu.querySelectorAll(
-            'a[href], button, input, textarea, select, [tabindex]:not([tabindex="-1"])'
-        );
-        
-        if (focusableElements.length > 0) {
-            this.firstFocusableElement = focusableElements[0];
-            this.lastFocusableElement = focusableElements[focusableElements.length - 1];
-            
-            // Focus first element
-            this.firstFocusableElement.focus();
-            
-            // Add keyboard trap
-            this.desktopMenu.addEventListener('keydown', this.handleFocusTrap.bind(this));
-        }
-    }
-    
-    handleFocusTrap(e) {
-        if (e.key === 'Tab') {
-            if (e.shiftKey) {
-                // Shift + Tab
-                if (document.activeElement === this.firstFocusableElement) {
-                    e.preventDefault();
-                    this.lastFocusableElement.focus();
-                }
-            } else {
-                // Tab
-                if (document.activeElement === this.lastFocusableElement) {
-                    e.preventDefault();
-                    this.firstFocusableElement.focus();
-                }
-            }
-        }
-    }
-    
-    releaseFocus() {
-        this.desktopMenu.removeEventListener('keydown', this.handleFocusTrap.bind(this));
-        this.mobileMenuButton.focus();
-    }
-    
-    dispatchMenuEvent(eventName) {
-        const event = new CustomEvent(eventName, {
-            detail: { isOpen: this.isOpen }
-        });
-        document.dispatchEvent(event);
     }
 }
 
-// Scroll to Top functionality
+// Scroll to Top functionality - Flat Design Version
 class ScrollToTop {
     constructor() {
         this.scrollToTopBtn = document.getElementById('scrollToTopBtn');
@@ -433,23 +336,12 @@ class ScrollToTop {
     }
     
     init() {
-        // Add aria-label for accessibility
-        this.scrollToTopBtn.setAttribute('aria-label', 'Scroll to top');
-        
         window.addEventListener('scroll', () => {
             this.toggleVisibility();
         });
         
         this.scrollToTopBtn.addEventListener('click', () => {
             this.scrollToTop();
-        });
-        
-        // Add keyboard support
-        this.scrollToTopBtn.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                this.scrollToTop();
-            }
         });
         
         // Initial check
@@ -459,10 +351,8 @@ class ScrollToTop {
     toggleVisibility() {
         if (window.pageYOffset > this.scrollThreshold) {
             this.scrollToTopBtn.classList.add('visible');
-            this.scrollToTopBtn.setAttribute('aria-hidden', 'false');
         } else {
             this.scrollToTopBtn.classList.remove('visible');
-            this.scrollToTopBtn.setAttribute('aria-hidden', 'true');
         }
     }
     
@@ -471,19 +361,10 @@ class ScrollToTop {
             top: 0,
             behavior: 'smooth'
         });
-        
-        // Return focus for accessibility
-        setTimeout(() => {
-            this.scrollToTopBtn.blur();
-        }, 1000);
-        
-        // Dispatch event
-        const event = new CustomEvent('scrolltotop');
-        document.dispatchEvent(event);
     }
 }
 
-// Smooth scrolling for anchor links
+// Smooth scrolling for anchor links - Simplified
 class SmoothScroll {
     constructor() {
         this.init();
@@ -492,8 +373,6 @@ class SmoothScroll {
     init() {
         document.addEventListener('click', (e) => {
             const target = e.target;
-            
-            // Handle both direct clicks and clicks on child elements inside links
             const link = target.closest('a');
             
             if (link && link.getAttribute('href')?.startsWith('#')) {
@@ -501,7 +380,6 @@ class SmoothScroll {
                 const targetId = link.getAttribute('href').substring(1);
                 
                 if (targetId === '') {
-                    // Scroll to top if href is just "#"
                     window.scrollTo({
                         top: 0,
                         behavior: 'smooth'
@@ -512,7 +390,7 @@ class SmoothScroll {
                 const targetElement = document.getElementById(targetId);
                 
                 if (targetElement) {
-                    const headerOffset = 80; // Adjust for fixed header
+                    const headerOffset = 80;
                     const elementPosition = targetElement.getBoundingClientRect().top;
                     const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
                     
@@ -520,83 +398,107 @@ class SmoothScroll {
                         top: offsetPosition,
                         behavior: 'smooth'
                     });
-                    
-                    // Update URL without scrolling
-                    history.pushState(null, null, `#${targetId}`);
                 }
             }
         });
     }
 }
 
-// Form handling
+// Form handling - Flat Design Version
 class FormHandler {
     constructor() {
         this.init();
     }
     
     init() {
-        const jobSearchForm = document.querySelector('form');
-        if (jobSearchForm) {
-            jobSearchForm.addEventListener('submit', (e) => {
+        const forms = document.querySelectorAll('form');
+        forms.forEach(form => {
+            form.addEventListener('submit', (e) => {
                 e.preventDefault();
-                this.handleJobSearch(jobSearchForm);
+                this.handleFormSubmit(form);
             });
+        });
+    }
+    
+    handleFormSubmit(form) {
+        const inputs = form.querySelectorAll('input');
+        let isValid = true;
+        
+        // Simple validation
+        inputs.forEach(input => {
+            if (input.type === 'email' && input.value) {
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(input.value)) {
+                    isValid = false;
+                    this.showError(input, 'Please enter a valid email address');
+                } else {
+                    this.removeError(input);
+                }
+            }
+            
+            if (input.hasAttribute('required') && !input.value.trim()) {
+                isValid = false;
+                this.showError(input, 'This field is required');
+            } else {
+                this.removeError(input);
+            }
+        });
+        
+        if (isValid) {
+            this.showSuccess(form);
         }
     }
     
-    handleJobSearch(form) {
-        const searchInput = form.querySelector('input[type="text"]');
-        const searchTerm = searchInput.value.trim();
+    showError(input, message) {
+        const errorDiv = document.createElement('div');
+        errorDiv.className = 'text-red-600 text-sm mt-1';
+        errorDiv.textContent = message;
         
-        if (searchTerm) {
-            // In a real application, this would make an API call
-            console.log(`Searching for jobs: ${searchTerm}`);
-            
-            // Show loading state
-            const submitButton = form.querySelector('button[type="submit"]');
-            const originalText = submitButton.textContent;
-            submitButton.textContent = 'Searching...';
-            submitButton.disabled = true;
-            
-            // Simulate API call
-            setTimeout(() => {
-                submitButton.textContent = originalText;
-                submitButton.disabled = false;
-                
-                // Show message
-                this.showSearchMessage(`No jobs found for "${searchTerm}". Try a different search term.`);
-            }, 1500);
-        } else {
-            searchInput.focus();
-        }
+        // Remove existing error
+        this.removeError(input);
+        
+        // Add error message
+        input.parentNode.appendChild(errorDiv);
+        input.classList.add('border-red-500');
     }
     
-    showSearchMessage(message) {
-        // Remove existing message
-        const existingMessage = document.querySelector('.search-message');
-        if (existingMessage) {
-            existingMessage.remove();
+    removeError(input) {
+        const errorDiv = input.parentNode.querySelector('.text-red-600');
+        if (errorDiv) {
+            errorDiv.remove();
         }
+        input.classList.remove('border-red-500');
+    }
+    
+    showSuccess(form) {
+        const button = form.querySelector('button[type="submit"]');
+        const originalText = button.textContent;
         
-        // Create new message
-        const messageDiv = document.createElement('div');
-        messageDiv.className = 'search-message mt-4 p-4 bg-blue-50 text-blue-700 rounded-lg animate-fade-in';
-        messageDiv.textContent = message;
+        // Show loading state
+        button.textContent = 'Sending...';
+        button.disabled = true;
         
-        // Find the form and insert message
-        const form = document.querySelector('form');
-        if (form) {
-            form.parentNode.insertBefore(messageDiv, form.nextSibling);
+        // Simulate API call
+        setTimeout(() => {
+            // Show success message
+            const successDiv = document.createElement('div');
+            successDiv.className = 'bg-green-50 text-green-700 p-4 mt-4';
+            successDiv.textContent = form.classList.contains('flex-col') 
+                ? 'Thank you for subscribing!' 
+                : 'Job search submitted successfully!';
             
-            // Remove message after 5 seconds
+            form.parentNode.insertBefore(successDiv, form.nextSibling);
+            
+            // Reset form
+            form.reset();
+            button.textContent = originalText;
+            button.disabled = false;
+            
+            // Remove success message after 5 seconds
             setTimeout(() => {
-                messageDiv.classList.add('opacity-0', 'transition-opacity', 'duration-300');
-                setTimeout(() => {
-                    messageDiv.remove();
-                }, 300);
+                successDiv.remove();
             }, 5000);
-        }
+        }, 1500);
     }
 }
 
@@ -613,14 +515,8 @@ class App {
     }
     
     init() {
-        // Wait for DOM to be fully loaded
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', () => {
-                this.setupApp();
-            });
-        } else {
-            this.setupApp();
-        }
+        // Initialize immediately
+        this.setupApp();
         
         // Handle page visibility changes
         document.addEventListener('visibilitychange', () => {
@@ -632,17 +528,9 @@ class App {
                 }
             }
         });
-        
-        // Handle window resize
-        window.addEventListener('resize', () => {
-            this.handleResize();
-        });
     }
     
     setupApp() {
-        // Add CSS animations
-        this.addAnimations();
-        
         // Initialize components
         this.carousel = new Carousel();
         this.mobileMenu = new MobileMenu();
@@ -650,127 +538,32 @@ class App {
         this.smoothScroll = new SmoothScroll();
         this.formHandler = new FormHandler();
         
-        // Add loading animation
-        this.addLoadingAnimation();
+        // Add content animations
+        this.addContentAnimations();
+    }
+    
+    addContentAnimations() {
+        // Simple fade-in animation for content boxes
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
         
-        // Dispatch app ready event
-        this.dispatchAppReadyEvent();
-    }
-    
-    addAnimations() {
-        if (!document.querySelector('#custom-animations')) {
-            const style = document.createElement('style');
-            style.id = 'custom-animations';
-            style.textContent = `
-                @keyframes fadeInDown {
-                    from {
-                        opacity: 0;
-                        transform: translateY(-10px);
-                    }
-                    to {
-                        opacity: 1;
-                        transform: translateY(0);
-                    }
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('opacity-100', 'translate-y-0');
+                    entry.target.classList.remove('opacity-0', 'translate-y-4');
                 }
-                
-                @keyframes fadeInUp {
-                    from {
-                        opacity: 0;
-                        transform: translateY(10px);
-                    }
-                    to {
-                        opacity: 1;
-                        transform: translateY(0);
-                    }
-                }
-                
-                @keyframes fadeIn {
-                    from {
-                        opacity: 0;
-                    }
-                    to {
-                        opacity: 1;
-                    }
-                }
-                
-                @keyframes slideInRight {
-                    from {
-                        opacity: 0;
-                        transform: translateX(20px);
-                    }
-                    to {
-                        opacity: 1;
-                        transform: translateX(0);
-                    }
-                }
-                
-                .animate-fade-in {
-                    animation: fadeIn 0.3s ease-out;
-                }
-                
-                .animate-fade-in-up {
-                    animation: fadeInUp 0.5s ease-out;
-                }
-                
-                .animate-fade-in-down {
-                    animation: fadeInDown 0.5s ease-out;
-                }
-                
-                .animate-slide-in-right {
-                    animation: slideInRight 0.5s ease-out;
-                }
-            `;
-            document.head.appendChild(style);
-        }
-    }
-    
-    addLoadingAnimation() {
-        // Add loading animation to content boxes
+            });
+        }, observerOptions);
+        
+        // Observe content boxes
         const contentBoxes = document.querySelectorAll('.content-box');
-        contentBoxes.forEach((box, index) => {
-            box.style.animationDelay = `${index * 0.1}s`;
-            box.classList.add('animate-fade-in-up');
+        contentBoxes.forEach(box => {
+            box.classList.add('opacity-0', 'translate-y-4', 'transition-all', 'duration-500');
+            observer.observe(box);
         });
-        
-        // Add animation to news items
-        const newsItems = document.querySelectorAll('.space-y-6 > div');
-        newsItems.forEach((item, index) => {
-            item.style.animationDelay = `${index * 0.15}s`;
-            item.classList.add('animate-slide-in-right');
-        });
-    }
-    
-    handleResize() {
-        // Handle any resize-specific logic
-        if (this.carousel) {
-            // Update progress bar container width on resize
-            const activeProgressBar = this.carousel.progressBars[this.carousel.currentSlide];
-            if (activeProgressBar) {
-                const container = activeProgressBar.parentElement;
-                if (container) {
-                    const containerWidth = container.offsetWidth;
-                    activeProgressBar.style.setProperty('--container-width', `${containerWidth}px`);
-                }
-            }
-        }
-        
-        // Close mobile menu on desktop resize
-        if (window.innerWidth >= 1024 && this.mobileMenu && this.mobileMenu.isOpen) {
-            this.mobileMenu.closeMenu();
-        }
-    }
-    
-    dispatchAppReadyEvent() {
-        const event = new CustomEvent('appready', {
-            detail: {
-                carousel: this.carousel,
-                mobileMenu: this.mobileMenu,
-                scrollToTop: this.scrollToTop,
-                smoothScroll: this.smoothScroll,
-                formHandler: this.formHandler
-            }
-        });
-        document.dispatchEvent(event);
     }
 }
 
@@ -779,11 +572,6 @@ const app = new App();
 
 // Make components available globally for debugging
 window.app = app;
-window.Carousel = Carousel;
-window.MobileMenu = MobileMenu;
-window.ScrollToTop = ScrollToTop;
-window.SmoothScroll = SmoothScroll;
-window.FormHandler = FormHandler;
 
 // Export for module usage if needed
 if (typeof module !== 'undefined' && module.exports) {
