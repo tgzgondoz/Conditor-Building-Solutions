@@ -15,6 +15,31 @@
     
     <!-- Custom Styles -->
     <style>
+        /* Base styles to prevent glitches */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+        
+        body {
+            overflow-x: hidden;
+            cursor: default;
+            background-color: #f9fafb;
+        }
+        
+        /* Prevent layout shifts */
+        img, video {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+        
         /* Flat Design Customizations */
         .flat-element {
             border-radius: 0 !important;
@@ -22,15 +47,15 @@
         
         /* Simplified color scheme */
         .flat-primary {
-            color: #2563eb !important; /* text-blue-600 */
+            color: #2563eb !important;
         }
         
         .flat-bg-primary {
-            background-color: #2563eb !important; /* bg-blue-600 */
+            background-color: #2563eb !important;
         }
         
         .flat-border-primary {
-            border-color: #2563eb !important; /* border-blue-600 */
+            border-color: #2563eb !important;
         }
         
         /* Remove shadows and gradients */
@@ -59,26 +84,141 @@
         .hero-carousel {
             height: 80vh;
             min-height: 600px;
+            position: relative;
+            overflow: hidden;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            transform: translate3d(0, 0, 0);
         }
         
         .carousel-slide {
-            transition: opacity 0.5s ease-in-out;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            transform: translate3d(0, 0, 0);
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            will-change: transform, opacity;
         }
         
-        /* Animation */
+        .carousel-slide.active {
+            z-index: 2;
+            opacity: 1;
+            transform: translate3d(0, 0, 0);
+        }
+        
+        .carousel-slide.next {
+            z-index: 1;
+            opacity: 0;
+            transform: translate3d(100%, 0, 0);
+        }
+        
+        .carousel-slide.prev {
+            z-index: 1;
+            opacity: 0;
+            transform: translate3d(-100%, 0, 0);
+        }
+        
+        /* Smooth transitions */
+        .carousel-slide {
+            transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+                       opacity 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        
+        /* Progress bar animation */
+        @keyframes progress {
+            from { 
+                width: 0%; 
+                transform: translate3d(0, 0, 0);
+            }
+            to { 
+                width: 100%; 
+                transform: translate3d(0, 0, 0);
+            }
+        }
+        
+        .carousel-indicator {
+            position: relative;
+            overflow: hidden;
+            background-color: rgba(255, 255, 255, 0.3);
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            transform: translate3d(0, 0, 0);
+        }
+        
+        .carousel-indicator.active {
+            background-color: rgba(255, 255, 255, 0.5);
+        }
+        
+        .carousel-indicator .progress-bar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 100%;
+            background-color: #2563eb;
+            transform: translate3d(0, 0, 0);
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+        }
+        
+        .carousel-indicator.active .progress-bar {
+            animation: progress 5s linear forwards;
+        }
+        
+        /* Animation classes */
         @keyframes fadeInUp {
             from {
                 opacity: 0;
-                transform: translateY(20px);
+                transform: translate3d(0, 30px, 0);
             }
             to {
                 opacity: 1;
-                transform: translateY(0);
+                transform: translate3d(0, 0, 0);
             }
         }
         
-        .animate-fade-in-up {
-            animation: fadeInUp 0.8s ease-out;
+        .fade-in-content {
+            opacity: 0;
+            transform: translate3d(0, 30px, 0);
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            will-change: transform, opacity;
+        }
+        
+        .fade-in-content.visible {
+            animation: fadeInUp 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+        }
+        
+        /* Hover effects with hardware acceleration */
+        .hover-lift {
+            transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                        box-shadow 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            transform: translate3d(0, 0, 0);
+        }
+        
+        .hover-lift:hover {
+            transform: translate3d(0, -5px, 0);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Smooth image scaling */
+        .scale-on-hover {
+            transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            transform: translate3d(0, 0, 0);
+        }
+        
+        .scale-on-hover:hover {
+            transform: translate3d(0, 0, 0) scale(1.05);
         }
         
         /* Scroll to top button */
@@ -96,13 +236,119 @@
             cursor: pointer;
             opacity: 0;
             visibility: hidden;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             z-index: 999;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            transform: translate3d(0, 0, 0);
         }
         
         .scroll-to-top.visible {
             opacity: 1;
             visibility: visible;
+        }
+        
+        /* Mobile menu */
+        .mobile-menu {
+            transform: translate3d(-100%, 0, 0);
+            transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+        }
+        
+        .mobile-menu.open {
+            transform: translate3d(0, 0, 0);
+        }
+        
+        /* Button cursor fix */
+        button, a {
+            cursor: pointer;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        button:focus, a:focus {
+            outline: 2px solid #2563eb;
+            outline-offset: 2px;
+        }
+        
+        /* Remove tap highlight on mobile */
+        * {
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        /* Smooth section transitions */
+        section {
+            transform: translate3d(0, 0, 0);
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+        }
+        
+        /* Prevent text selection on interactive elements */
+        .carousel-indicator,
+        .carousel-prev,
+        .carousel-next,
+        .contact-float {
+            user-select: none;
+            -webkit-user-select: none;
+        }
+        
+        /* Optimize performance */
+        .optimize-performance {
+            transform: translate3d(0, 0, 0);
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            will-change: transform;
+        }
+        
+        /* Loading state */
+        .loading {
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .loaded {
+            opacity: 1;
+        }
+        
+        /* Fix for content boxes */
+        .content-box {
+            transform: translate3d(0, 0, 0);
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            overflow: hidden;
+        }
+        
+        .content-box img {
+            transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transform: translate3d(0, 0, 0) scale(1);
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+        }
+        
+        .content-box:hover img {
+            transform: translate3d(0, 0, 0) scale(1.1);
+        }
+        
+        /* Smooth form transitions */
+        input, button, textarea {
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transform: translate3d(0, 0, 0);
+        }
+        
+        /* Prevent hover effects on touch devices */
+        @media (hover: none) and (pointer: coarse) {
+            .hover-lift:hover {
+                transform: none;
+                box-shadow: none;
+            }
+            
+            .scale-on-hover:hover {
+                transform: none;
+            }
+            
+            .content-box:hover img {
+                transform: none;
+            }
         }
     </style>
     
@@ -116,8 +362,16 @@
     <meta name="twitter:card" content="summary_large_image">
 </head>
 <body class="bg-gray-50">
+    <!-- Loading overlay -->
+    <div id="loading" class="fixed inset-0 bg-white z-[9999] flex items-center justify-center transition-opacity duration-300">
+        <div class="text-center">
+            <div class="inline-block animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-600 mb-4"></div>
+            <p class="text-gray-600">Loading...</p>
+        </div>
+    </div>
+
     <!-- Top Navigation Bar -->
-    <nav class="fixed top-0 w-full bg-white nav-shadow z-50 transition-all duration-300 flat-element">
+    <nav class="fixed top-0 w-full bg-white nav-shadow z-50 transition-all duration-300 flat-element optimize-performance">
         <div class="container mx-auto px-4 py-3">
             <div class="flex justify-between items-center">
                 <!-- Logo -->
@@ -136,7 +390,7 @@
                     <a href="#" class="text-gray-700 hover:flat-primary font-medium py-2 nav-item transition-colors duration-200">Insights</a>
                     <a href="#" class="text-gray-700 hover:flat-primary font-medium py-2 nav-item transition-colors duration-200">Careers</a>
                     <a href="#" class="text-gray-700 hover:flat-primary font-medium py-2 nav-item transition-colors duration-200">News</a>
-                    <a href="#" class="flat-bg-primary text-white px-6 py-2 font-medium hover:bg-blue-700 transition-all duration-300 ml-4 flat-element">Contact</a>
+                    <a href="#" class="flat-bg-primary text-white px-6 py-2 font-medium hover:bg-blue-700 transition-all duration-300 ml-4 flat-element hover-lift">Contact</a>
                 </div>
                 
                 <!-- Mobile Menu Button -->
@@ -145,23 +399,37 @@
                 </button>
             </div>
         </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="mobile-menu absolute top-full left-0 w-full bg-white shadow-lg lg:hidden">
+            <div class="container mx-auto px-4 py-6">
+                <div class="flex flex-col space-y-4">
+                    <a href="#" class="text-gray-700 hover:flat-primary font-medium py-3 border-b border-gray-100 transition-colors duration-200">About Us</a>
+                    <a href="#" class="text-gray-700 hover:flat-primary font-medium py-3 border-b border-gray-100 transition-colors duration-200">Our Work</a>
+                    <a href="#" class="text-gray-700 hover:flat-primary font-medium py-3 border-b border-gray-100 transition-colors duration-200">Insights</a>
+                    <a href="#" class="text-gray-700 hover:flat-primary font-medium py-3 border-b border-gray-100 transition-colors duration-200">Careers</a>
+                    <a href="#" class="text-gray-700 hover:flat-primary font-medium py-3 border-b border-gray-100 transition-colors duration-200">News</a>
+                    <a href="#" class="flat-bg-primary text-white px-6 py-3 font-medium hover:bg-blue-700 transition-all duration-300 mt-4 text-center flat-element hover-lift">Contact</a>
+                </div>
+            </div>
+        </div>
     </nav>
 
     <!-- Hero Carousel -->
     <section class="hero-carousel mt-20 relative overflow-hidden">
         <!-- Slide 1 -->
-        <div class="carousel-slide absolute inset-0" style="background-image: url('assets/Pool_at_Night.jpg');">
-            <div class="absolute inset-0 bg-black/70"></div>
+        <div class="carousel-slide active" style="background-image: url('assets/Pool_at_Night.jpg');">
+            <div class="absolute inset-0 bg-gradient-to-r from-black/80 to-black/50"></div>
             <div class="container mx-auto px-4 h-full flex items-center">
-                <div class="max-w-2xl text-white animate-fade-in-up">
+                <div class="max-w-2xl text-white fade-in-content">
                     <p class="flat-primary font-semibold mb-4 tracking-widest text-sm uppercase">DELIVERING EXCELLENCE</p>
                     <h1 class="text-5xl md:text-6xl font-bold mb-6 leading-tight font-playfair">Conditor Annual<br>Report 2025</h1>
                     <p class="text-xl mb-8 text-gray-200 max-w-lg">Explore the progress, achievements, and impact that defined our journey in 2025</p>
                     <div class="flex flex-wrap gap-4">
-                        <a href="#" class="inline-flex items-center flat-bg-primary hover:bg-blue-700 text-white px-8 py-4 font-semibold transition-all duration-300 flat-element">
+                        <a href="#" class="inline-flex items-center flat-bg-primary hover:bg-blue-700 text-white px-8 py-4 font-semibold transition-all duration-300 flat-element hover-lift">
                             Download Report <i class="fas fa-download ml-3"></i>
                         </a>
-                        <a href="#" class="inline-flex items-center border-2 border-white/50 hover:border-white text-white px-8 py-4 font-semibold transition-all duration-300 flat-element">
+                        <a href="#" class="inline-flex items-center border-2 border-white/50 hover:border-white text-white px-8 py-4 font-semibold transition-all duration-300 flat-element hover-lift">
                             Watch Video <i class="fas fa-play ml-3"></i>
                         </a>
                     </div>
@@ -170,14 +438,14 @@
         </div>
         
         <!-- Slide 2 -->
-        <div class="carousel-slide absolute inset-0 opacity-0" style="background-image: url('assets/Pool_Night.jpg');">
-            <div class="absolute inset-0 bg-black/70"></div>
+        <div class="carousel-slide next" style="background-image: url('assets/Pool_Night.jpg');">
+            <div class="absolute inset-0 bg-gradient-to-r from-black/80 to-black/50"></div>
             <div class="container mx-auto px-4 h-full flex items-center">
                 <div class="max-w-2xl text-white">
                     <p class="flat-primary font-semibold mb-4 tracking-widest text-sm uppercase">INDUSTRY INTELLIGENCE</p>
                     <h2 class="text-5xl md:text-6xl font-bold mb-6 leading-tight font-playfair">Construction Market<br>Review 2026</h2>
                     <p class="text-xl mb-8 text-gray-200 max-w-lg">Essential analysis, market intelligence and thought leadership for the built environment</p>
-                    <a href="#" class="inline-flex items-center flat-bg-primary hover:bg-blue-700 text-white px-8 py-4 font-semibold transition-all duration-300 flat-element">
+                    <a href="#" class="inline-flex items-center flat-bg-primary hover:bg-blue-700 text-white px-8 py-4 font-semibold transition-all duration-300 flat-element hover-lift">
                         Read the Report <i class="fas fa-chevron-right ml-3"></i>
                     </a>
                 </div>
@@ -185,14 +453,14 @@
         </div>
         
         <!-- Slide 3 -->
-        <div class="carousel-slide absolute inset-0 opacity-0" style="background-image: url('assets/Corridor.jpg');">
-            <div class="absolute inset-0 bg-black/70"></div>
+        <div class="carousel-slide next" style="background-image: url('assets/Corridor.jpg');">
+            <div class="absolute inset-0 bg-gradient-to-r from-black/80 to-black/50"></div>
             <div class="container mx-auto px-4 h-full flex items-center">
                 <div class="max-w-2xl text-white">
                     <p class="flat-primary font-semibold mb-4 tracking-widest text-sm uppercase">INNOVATION</p>
                     <h2 class="text-5xl md:text-6xl font-bold mb-6 leading-tight font-playfair">Building the<br>Future Together</h2>
                     <p class="text-xl mb-8 text-gray-200 max-w-lg">With global expertise and local insights, we deliver reliable and resilient construction solutions</p>
-                    <a href="#" class="inline-flex items-center flat-bg-primary hover:bg-blue-700 text-white px-8 py-4 font-semibold transition-all duration-300 flat-element">
+                    <a href="#" class="inline-flex items-center flat-bg-primary hover:bg-blue-700 text-white px-8 py-4 font-semibold transition-all duration-300 flat-element hover-lift">
                         Discover More <i class="fas fa-arrow-right ml-3"></i>
                     </a>
                 </div>
@@ -200,30 +468,30 @@
         </div>
         
         <!-- Carousel Navigation -->
-        <div class="absolute bottom-8 left-0 right-0">
+        <div class="absolute bottom-8 left-0 right-0 z-10">
             <div class="container mx-auto px-4">
                 <div class="flex items-center justify-between">
                     <div class="flex space-x-4" id="carousel-indicators">
                         <div class="carousel-indicator active w-12 h-1 bg-gray-400/50 overflow-hidden cursor-pointer group flat-element">
                             <div class="progress-bar"></div>
-                            <span class="text-xs text-white mt-2 opacity-0 group-hover:opacity-100 transition-opacity">Annual Report</span>
+                            <span class="text-xs text-white mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200">Annual Report</span>
                         </div>
                         <div class="carousel-indicator w-12 h-1 bg-gray-400/50 overflow-hidden cursor-pointer group flat-element">
                             <div class="progress-bar"></div>
-                            <span class="text-xs text-white mt-2 opacity-0 group-hover:opacity-100 transition-opacity">Market Review</span>
+                            <span class="text-xs text-white mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200">Market Review</span>
                         </div>
                         <div class="carousel-indicator w-12 h-1 bg-gray-400/50 overflow-hidden cursor-pointer group flat-element">
                             <div class="progress-bar"></div>
-                            <span class="text-xs text-white mt-2 opacity-0 group-hover:opacity-100 transition-opacity">Innovation</span>
+                            <span class="text-xs text-white mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200">Innovation</span>
                         </div>
                     </div>
                     
                     <!-- Manual Navigation Arrows -->
                     <div class="flex space-x-2">
-                        <button class="carousel-prev w-10 h-10 bg-white/20 hover:bg-white/30 text-white flex items-center justify-center transition-all duration-300 flat-element">
+                        <button class="carousel-prev w-10 h-10 bg-white/20 hover:bg-white/30 text-white flex items-center justify-center transition-all duration-300 flat-element hover-lift">
                             <i class="fas fa-chevron-left"></i>
                         </button>
-                        <button class="carousel-next w-10 h-10 bg-white/20 hover:bg-white/30 text-white flex items-center justify-center transition-all duration-300 flat-element">
+                        <button class="carousel-next w-10 h-10 bg-white/20 hover:bg-white/30 text-white flex items-center justify-center transition-all duration-300 flat-element hover-lift">
                             <i class="fas fa-chevron-right"></i>
                         </button>
                     </div>
@@ -236,19 +504,19 @@
     <section class="py-12 bg-white border-b">
         <div class="container mx-auto px-4">
             <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
-                <div class="text-center">
+                <div class="text-center hover-lift">
                     <div class="text-4xl font-bold flat-primary mb-2">150+</div>
                     <div class="text-gray-600 font-medium">Projects Completed</div>
                 </div>
-                <div class="text-center">
+                <div class="text-center hover-lift">
                     <div class="text-4xl font-bold flat-primary mb-2">40+</div>
                     <div class="text-gray-600 font-medium">Years Experience</div>
                 </div>
-                <div class="text-center">
+                <div class="text-center hover-lift">
                     <div class="text-4xl font-bold flat-primary mb-2">500+</div>
                     <div class="text-gray-600 font-medium">Expert Employees</div>
                 </div>
-                <div class="text-center">
+                <div class="text-center hover-lift">
                     <div class="text-4xl font-bold flat-primary mb-2">98%</div>
                     <div class="text-gray-600 font-medium">Client Satisfaction</div>
                 </div>
@@ -261,22 +529,22 @@
         <div class="container mx-auto px-4">
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
                 <div class="lg:col-span-2">
-                    <div class="mb-8">
+                    <div class="mb-8 fade-in-content">
                         <p class="flat-primary font-semibold mb-3 tracking-widest text-sm uppercase">Welcome to Conditor</p>
                         <h3 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6 leading-tight font-playfair">Building Excellence Through Innovation and Integrity</h3>
                         <p class="text-lg text-gray-600 mb-8 leading-relaxed">Conditor is the trusted construction leader committed to delivering excellence in every project. With over 40 years of experience, we combine traditional craftsmanship with cutting-edge technology to create lasting structures that stand the test of time.</p>
                         <div class="flex flex-wrap gap-4">
-                            <a href="#" class="inline-flex items-center flat-bg-primary hover:bg-blue-700 text-white px-8 py-3 font-semibold transition-all duration-300 flat-element">
+                            <a href="#" class="inline-flex items-center flat-bg-primary hover:bg-blue-700 text-white px-8 py-3 font-semibold transition-all duration-300 flat-element hover-lift">
                                 About Us <i class="fas fa-arrow-right ml-3"></i>
                             </a>
-                            <a href="#" class="inline-flex items-center border-2 border-gray-300 hover:flat-border-primary text-gray-700 hover:flat-primary px-8 py-3 font-semibold transition-all duration-300 flat-element">
+                            <a href="#" class="inline-flex items-center border-2 border-gray-300 hover:flat-border-primary text-gray-700 hover:flat-primary px-8 py-3 font-semibold transition-all duration-300 flat-element hover-lift">
                                 Our Services
                             </a>
                         </div>
                     </div>
                 </div>
                 <div class="lg:col-span-1">
-                    <div class="bg-gray-50 p-8 border border-gray-200 flat-element">
+                    <div class="bg-gray-50 p-8 border border-gray-200 flat-element hover-lift">
                         <h4 class="text-xl font-bold text-gray-900 mb-6 pb-4 border-b border-gray-200">Latest News</h4>
                         <div class="space-y-8">
                             <div class="group">
@@ -327,7 +595,7 @@
     <!-- Content Grid -->
     <section class="py-16 bg-gray-50">
         <div class="container mx-auto px-4">
-            <div class="text-center mb-12">
+            <div class="text-center mb-12 fade-in-content">
                 <p class="flat-primary font-semibold mb-3 tracking-widest text-sm uppercase">Featured Projects</p>
                 <h3 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4 font-playfair">Our Portfolio</h3>
                 <p class="text-lg text-gray-600 max-w-2xl mx-auto">Discover our recent projects that showcase innovation, quality, and sustainable construction practices</p>
@@ -336,9 +604,9 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 <!-- Large Box -->
                 <div class="md:col-span-2 lg:col-span-2">
-                    <div class="content-box bg-gray-900 overflow-hidden h-[500px] relative flat-element">
-                        <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" style="background-image: url('assets/Backkyard.jpg');"></div>
-                        <div class="absolute inset-0 bg-black/70"></div>
+                    <div class="content-box bg-gray-900 overflow-hidden h-[500px] relative flat-element group hover-lift">
+                        <div class="absolute inset-0 bg-cover bg-center scale-on-hover" style="background-image: url('assets/Bakkyard.jpg');"></div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent"></div>
                         <div class="absolute bottom-0 left-0 right-0 p-8 text-white">
                             <span class="inline-block flat-bg-primary text-white px-4 py-1 text-sm font-medium mb-4 flat-element">Insights</span>
                             <h3 class="text-3xl font-bold mb-4">Sustainable Construction Practices</h3>
@@ -352,9 +620,9 @@
                 
                 <!-- Small Box 1 -->
                 <div class="md:col-span-1 lg:col-span-1">
-                    <div class="content-box bg-gray-900 overflow-hidden h-[500px] relative flat-element">
-                        <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" style="background-image: url('assets/Poolhouse.jpg');"></div>
-                        <div class="absolute inset-0 bg-black/70"></div>
+                    <div class="content-box bg-gray-900 overflow-hidden h-[500px] relative flat-element group hover-lift">
+                        <div class="absolute inset-0 bg-cover bg-center scale-on-hover" style="background-image: url('assets/Poolhouse.jpg');"></div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent"></div>
                         <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
                             <span class="inline-block flat-bg-primary text-white px-4 py-1 text-sm font-medium mb-4 flat-element">Commercial</span>
                             <h3 class="text-2xl font-bold mb-4">Skyline Tower</h3>
@@ -368,9 +636,9 @@
                 
                 <!-- Small Box 2 -->
                 <div class="md:col-span-1 lg:col-span-1">
-                    <div class="content-box bg-gray-900 overflow-hidden h-[500px] relative flat-element">
-                        <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" style="background-image: url('assets/SideView.jpg');"></div>
-                        <div class="absolute inset-0 bg-black/70"></div>
+                    <div class="content-box bg-gray-900 overflow-hidden h-[500px] relative flat-element group hover-lift">
+                        <div class="absolute inset-0 bg-cover bg-center scale-on-hover" style="background-image: url('assets/SideView.jpg');"></div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent"></div>
                         <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
                             <span class="inline-block flat-bg-primary text-white px-4 py-1 text-sm font-medium mb-4 flat-element">Research</span>
                             <h3 class="text-2xl font-bold mb-4">Construction Innovation</h3>
@@ -384,9 +652,9 @@
                 
                 <!-- Medium Box 1 -->
                 <div class="md:col-span-1 lg:col-span-2">
-                    <div class="content-box bg-gray-900 overflow-hidden h-[400px] relative flat-element">
-                        <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" style="background-image: url('assets/AngleShif.jpg');"></div>
-                        <div class="absolute inset-0 bg-black/70"></div>
+                    <div class="content-box bg-gray-900 overflow-hidden h-[400px] relative flat-element group hover-lift">
+                        <div class="absolute inset-0 bg-cover bg-center scale-on-hover" style="background-image: url('assets/Angleshift.jpg');"></div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent"></div>
                         <div class="absolute bottom-0 left-0 right-0 p-8 text-white">
                             <span class="inline-block flat-bg-primary text-white px-4 py-1 text-sm font-medium mb-4 flat-element">Article</span>
                             <h3 class="text-2xl font-bold mb-4">Building the construction workforce of the future</h3>
@@ -400,9 +668,9 @@
                 
                 <!-- Medium Box 2 -->
                 <div class="md:col-span-1 lg:col-span-2">
-                    <div class="content-box bg-gray-900 overflow-hidden h-[400px] relative flat-element">
-                        <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" style="background-image: url('assets/1024W_F_903491003_kz1P599z53v35Y4pmBjKJLC9cseEftw0_NW1j');"></div>
-                        <div class="absolute inset-0 bg-black/70"></div>
+                    <div class="content-box bg-gray-900 overflow-hidden h-[400px] relative flat-element group hover-lift">
+                        <div class="absolute inset-0 bg-cover bg-center scale-on-hover" style="background-image: url('assets/1024W_F_903491003_kz1P599z53v35Y4pmBjKJLC9cseEtfw0');"></div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent"></div>
                         <div class="absolute bottom-0 left-0 right-0 p-8 text-white">
                             <span class="inline-block flat-bg-primary text-white px-4 py-1 text-sm font-medium mb-4 flat-element">Leadership</span>
                             <h3 class="text-2xl font-bold mb-4">Meet our construction experts and leaders</h3>
@@ -423,11 +691,11 @@
         <div class="absolute top-0 left-0 w-full h-1 bg-blue-500"></div>
         <div class="container mx-auto px-4 relative z-10">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                <div class="text-white">
+                <div class="text-white fade-in-content">
                     <p class="text-blue-300 font-semibold mb-4 tracking-widest text-sm uppercase">Career opportunities</p>
                     <h2 class="text-4xl md:text-5xl font-bold mb-6 leading-tight font-playfair">Build Your Legacy With Us</h2>
                     <p class="text-gray-200 text-lg mb-8 leading-relaxed">At Conditor, we're driven by a common purpose to build a better world. Ideas have no borders and this ethos is embedded in our culture. Join us in creating legacies for generations to come.</p>
-                    <div class="bg-white/10 p-6 mb-8 border border-white/20 flat-element">
+                    <div class="bg-white/10 p-6 mb-8 border border-white/20 flat-element hover-lift">
                         <h4 class="text-xl font-bold mb-4">Why Join Conditor?</h4>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div class="flex items-start">
@@ -448,17 +716,17 @@
                             </div>
                         </div>
                     </div>
-                    <form class="bg-white p-2 flex flex-col sm:flex-row gap-2 flat-element">
+                    <form class="bg-white p-2 flex flex-col sm:flex-row gap-2 flat-element hover-lift">
                         <input type="text" placeholder="Search for jobs, departments, or locations..." class="flex-grow px-6 py-4 text-gray-800 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 flat-element">
-                        <button type="submit" class="flat-bg-primary hover:bg-blue-700 text-white px-8 py-4 font-semibold transition-all duration-300 whitespace-nowrap flat-element">
+                        <button type="submit" class="flat-bg-primary hover:bg-blue-700 text-white px-8 py-4 font-semibold transition-all duration-300 whitespace-nowrap flat-element hover-lift">
                             <i class="fas fa-search mr-2"></i> Search Jobs
                         </button>
                     </form>
                 </div>
-                <div class="relative">
-                    <div class="relative overflow-hidden flat-element">
-                        <img src="assets/Pool_at_Night.jpg" alt="Construction Team" class="w-full h-[500px] object-cover">
-                        <div class="absolute inset-0 bg-blue-900/60"></div>
+                <div class="relative fade-in-content">
+                    <div class="relative overflow-hidden flat-element hover-lift">
+                        <img src="assets/Pool_at_Night.jpg" alt="Construction Team" class="w-full h-[500px] object-cover scale-on-hover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-blue-900/80 to-transparent"></div>
                         <div class="absolute bottom-0 left-0 right-0 p-8 text-white">
                             <div class="text-4xl font-bold mb-2">Join Our Team</div>
                             <p class="text-lg">Be part of something bigger</p>
@@ -475,7 +743,7 @@
     <!-- Social Media Feeds -->
     <section class="py-20 bg-white">
         <div class="container mx-auto px-4">
-            <div class="text-center mb-12">
+            <div class="text-center mb-12 fade-in-content">
                 <p class="flat-primary font-semibold mb-3 tracking-widest text-sm uppercase">Social Media</p>
                 <h3 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4 font-playfair">Connect With Us</h3>
                 <p class="text-lg text-gray-600 max-w-2xl mx-auto">Follow our journey and stay updated with the latest from Conditor Building Solutions</p>
@@ -483,10 +751,11 @@
             
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 <!-- LinkedIn Feed -->
-                <div class="social-feed overflow-hidden flat-element">
-                    <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" style="background-image: url('assets/Corridor.jpg');"></div>
+                <div class="social-feed overflow-hidden flat-element group hover-lift">
+                    <div class="absolute inset-0 bg-cover bg-center scale-on-hover" style="background-image: url('assets/Corridor.jpg');"></div>
                     <div class="social-feed-content p-8 h-full flex flex-col justify-end relative">
-                        <div class="mb-6">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent"></div>
+                        <div class="relative mb-6">
                             <div class="flex items-center mb-4">
                                 <div class="w-12 h-12 flat-bg-primary flex items-center justify-center mr-4 flat-element">
                                     <i class="fab fa-linkedin-in text-white text-xl"></i>
@@ -503,17 +772,18 @@
                                 <span><i class="far fa-comment mr-1"></i> 42</span>
                             </div>
                         </div>
-                        <a href="#" class="inline-flex items-center bg-white flat-primary px-6 py-3 font-semibold transition-all duration-300 hover:bg-gray-100 w-fit flat-element">
+                        <a href="#" class="relative inline-flex items-center bg-white flat-primary px-6 py-3 font-semibold transition-all duration-300 hover:bg-gray-100 w-fit flat-element hover-lift">
                             <i class="fab fa-linkedin-in mr-3"></i> Follow on LinkedIn
                         </a>
                     </div>
                 </div>
                 
                 <!-- Instagram Feed -->
-                <div class="social-feed overflow-hidden flat-element">
-                    <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" style="background-image: url('assets/Pool_Night.jpg');"></div>
+                <div class="social-feed overflow-hidden flat-element group hover-lift">
+                    <div class="absolute inset-0 bg-cover bg-center scale-on-hover" style="background-image: url('assets/Pool_Night.jpg');"></div>
                     <div class="social-feed-content p-8 h-full flex flex-col justify-end relative">
-                        <div class="mb-6">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent"></div>
+                        <div class="relative mb-6">
                             <div class="flex items-center mb-4">
                                 <div class="w-12 h-12 flat-bg-primary flex items-center justify-center mr-4 flat-element">
                                     <i class="fab fa-instagram text-white text-xl"></i>
@@ -531,7 +801,7 @@
                                 <span><i class="far fa-comment mr-1"></i> 89</span>
                             </div>
                         </div>
-                        <a href="#" class="inline-flex items-center flat-bg-primary text-white px-6 py-3 font-semibold transition-all duration-300 w-fit flat-element">
+                        <a href="#" class="relative inline-flex items-center flat-bg-primary text-white px-6 py-3 font-semibold transition-all duration-300 w-fit flat-element hover-lift">
                             <i class="fab fa-instagram mr-3"></i> Follow on Instagram
                         </a>
                     </div>
@@ -542,13 +812,13 @@
 
     <!-- Newsletter Section -->
     <section class="py-20 bg-gray-50 border-t">
-        <div class="container mx-auto px-4">
+        <div class="container mx-auto px-4 fade-in-content">
             <div class="max-w-2xl mx-auto text-center">
                 <h3 class="text-3xl font-bold text-gray-900 mb-4 font-playfair">Stay Informed</h3>
                 <p class="text-lg text-gray-600 mb-8">Subscribe to our newsletter for the latest updates, insights, and project highlights</p>
                 <form class="flex flex-col sm:flex-row gap-4">
                     <input type="email" placeholder="Your email address" class="flex-grow px-6 py-4 text-gray-800 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 flat-element">
-                    <button type="submit" class="flat-bg-primary hover:bg-blue-700 text-white px-8 py-4 font-semibold transition-all duration-300 whitespace-nowrap flat-element">
+                    <button type="submit" class="flat-bg-primary hover:bg-blue-700 text-white px-8 py-4 font-semibold transition-all duration-300 whitespace-nowrap flat-element hover-lift">
                         Subscribe
                     </button>
                 </form>
@@ -569,19 +839,19 @@
                     </div>
                     <p class="text-gray-400 mb-8 leading-relaxed max-w-lg">The trusted construction leader committed to delivering excellence in every project. Building the future with innovation, integrity, and sustainable practices since 1983.</p>
                     <div class="flex space-x-4">
-                        <a href="#" class="w-12 h-12 bg-gray-800 hover:flat-bg-primary flex items-center justify-center transition-all duration-300 flat-element">
+                        <a href="#" class="w-12 h-12 bg-gray-800 hover:flat-bg-primary flex items-center justify-center transition-all duration-300 flat-element hover-lift">
                             <i class="fab fa-facebook-f"></i>
                         </a>
-                        <a href="#" class="w-12 h-12 bg-gray-800 hover:flat-bg-primary flex items-center justify-center transition-all duration-300 flat-element">
+                        <a href="#" class="w-12 h-12 bg-gray-800 hover:flat-bg-primary flex items-center justify-center transition-all duration-300 flat-element hover-lift">
                             <i class="fab fa-twitter"></i>
                         </a>
-                        <a href="#" class="w-12 h-12 bg-gray-800 hover:flat-bg-primary flex items-center justify-center transition-all duration-300 flat-element">
+                        <a href="#" class="w-12 h-12 bg-gray-800 hover:flat-bg-primary flex items-center justify-center transition-all duration-300 flat-element hover-lift">
                             <i class="fab fa-linkedin-in"></i>
                         </a>
-                        <a href="#" class="w-12 h-12 bg-gray-800 hover:flat-bg-primary flex items-center justify-center transition-all duration-300 flat-element">
+                        <a href="#" class="w-12 h-12 bg-gray-800 hover:flat-bg-primary flex items-center justify-center transition-all duration-300 flat-element hover-lift">
                             <i class="fab fa-instagram"></i>
                         </a>
-                        <a href="#" class="w-12 h-12 bg-gray-800 hover:flat-bg-primary flex items-center justify-center transition-all duration-300 flat-element">
+                        <a href="#" class="w-12 h-12 bg-gray-800 hover:flat-bg-primary flex items-center justify-center transition-all duration-300 flat-element hover-lift">
                             <i class="fab fa-youtube"></i>
                         </a>
                     </div>
@@ -634,9 +904,9 @@
 
     <!-- Contact Float Button -->
     <div class="fixed bottom-8 right-8 z-40">
-        <button class="contact-float flat-bg-primary hover:bg-blue-700 text-white w-14 h-14 flex items-center justify-center transition-all duration-300 group flat-element">
+        <button class="contact-float flat-bg-primary hover:bg-blue-700 text-white w-14 h-14 flex items-center justify-center transition-all duration-300 group flat-element hover-lift">
             <i class="fas fa-comment text-xl"></i>
-            <span class="absolute right-full mr-4 flat-bg-primary text-white px-4 py-2 text-sm font-medium whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity flat-element">Contact Us</span>
+            <span class="absolute right-full mr-4 flat-bg-primary text-white px-4 py-2 text-sm font-medium whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 flat-element">Contact Us</span>
         </button>
     </div>
 
@@ -647,87 +917,268 @@
 
     <!-- JavaScript -->
     <script>
-        // Simple carousel functionality
-        let currentSlide = 0;
-        const slides = document.querySelectorAll('.carousel-slide');
-        const indicators = document.querySelectorAll('.carousel-indicator');
-        const totalSlides = slides.length;
-
-        function showSlide(index) {
-            // Hide all slides
-            slides.forEach(slide => {
-                slide.style.opacity = '0';
-            });
-            indicators.forEach(indicator => {
-                indicator.classList.remove('active');
-            });
+        // Wait for page to load completely
+        window.addEventListener('load', function() {
+            // Hide loading screen
+            const loading = document.getElementById('loading');
+            setTimeout(() => {
+                loading.style.opacity = '0';
+                setTimeout(() => {
+                    loading.style.display = 'none';
+                }, 300);
+            }, 500);
             
-            // Show current slide
-            slides[index].style.opacity = '1';
-            indicators[index].classList.add('active');
-            currentSlide = index;
-        }
-
-        function nextSlide() {
-            currentSlide = (currentSlide + 1) % totalSlides;
-            showSlide(currentSlide);
-        }
-
-        function prevSlide() {
-            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-            showSlide(currentSlide);
-        }
-
-        // Auto advance slides every 5 seconds
-        let slideInterval = setInterval(nextSlide, 5000);
-
-        // Manual controls
-        document.querySelector('.carousel-next').addEventListener('click', () => {
-            clearInterval(slideInterval);
-            nextSlide();
-            slideInterval = setInterval(nextSlide, 5000);
+            // Initialize all components
+            initCarousel();
+            initAnimations();
+            initEventListeners();
         });
 
-        document.querySelector('.carousel-prev').addEventListener('click', () => {
-            clearInterval(slideInterval);
-            prevSlide();
-            slideInterval = setInterval(nextSlide, 5000);
-        });
+        // Carousel functionality
+        function initCarousel() {
+            let currentSlide = 0;
+            const slides = document.querySelectorAll('.carousel-slide');
+            const indicators = document.querySelectorAll('.carousel-indicator');
+            const totalSlides = slides.length;
+            let slideInterval;
+            let isAnimating = false;
 
-        // Indicator click events
-        indicators.forEach((indicator, index) => {
-            indicator.addEventListener('click', () => {
-                clearInterval(slideInterval);
-                showSlide(index);
-                slideInterval = setInterval(nextSlide, 5000);
+            // Initialize progress bars
+            indicators.forEach(indicator => {
+                if (!indicator.querySelector('.progress-bar')) {
+                    const progressBar = document.createElement('div');
+                    progressBar.className = 'progress-bar';
+                    indicator.appendChild(progressBar);
+                }
             });
-        });
 
-        // Scroll to top functionality
-        const scrollToTopBtn = document.getElementById('scrollToTopBtn');
-        
-        window.addEventListener('scroll', () => {
-            if (window.pageYOffset > 300) {
-                scrollToTopBtn.classList.add('visible');
-            } else {
-                scrollToTopBtn.classList.remove('visible');
+            function showSlide(index, direction = 'next') {
+                if (isAnimating || index === currentSlide) return;
+                
+                isAnimating = true;
+                const current = slides[currentSlide];
+                const next = slides[index];
+                
+                // Reset progress bars
+                indicators.forEach(indicator => {
+                    const progressBar = indicator.querySelector('.progress-bar');
+                    if (progressBar) {
+                        progressBar.style.animation = 'none';
+                        progressBar.style.width = '0%';
+                        void progressBar.offsetWidth; // Trigger reflow
+                    }
+                });
+                
+                // Update indicators
+                indicators.forEach(indicator => indicator.classList.remove('active'));
+                indicators[index].classList.add('active');
+                
+                // Animate progress bar
+                const activeProgressBar = indicators[index].querySelector('.progress-bar');
+                if (activeProgressBar) {
+                    activeProgressBar.style.animation = 'progress 5s linear forwards';
+                }
+                
+                // Animate slides
+                if (direction === 'next') {
+                    current.classList.remove('active');
+                    current.classList.add('prev');
+                    next.classList.remove('prev', 'next');
+                    next.classList.add('active');
+                } else {
+                    current.classList.remove('active');
+                    current.classList.add('next');
+                    next.classList.remove('prev', 'next');
+                    next.classList.add('active');
+                }
+                
+                // Reset animation flag
+                setTimeout(() => {
+                    isAnimating = false;
+                }, 800);
+                
+                currentSlide = index;
             }
-        });
 
-        scrollToTopBtn.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
+            function nextSlide() {
+                const nextIndex = (currentSlide + 1) % totalSlides;
+                showSlide(nextIndex, 'next');
+            }
+
+            function prevSlide() {
+                const prevIndex = (currentSlide - 1 + totalSlides) % totalSlides;
+                showSlide(prevIndex, 'prev');
+            }
+
+            function startAutoSlide() {
+                clearInterval(slideInterval);
+                slideInterval = setInterval(nextSlide, 5000);
+            }
+
+            // Event listeners
+            document.querySelector('.carousel-next').addEventListener('click', () => {
+                nextSlide();
+                startAutoSlide();
             });
-        });
 
-        // Mobile menu functionality
-        document.getElementById('mobile-menu-button').addEventListener('click', () => {
-            alert('Mobile menu would open here. For this demo, we\'re just showing an alert.');
-        });
+            document.querySelector('.carousel-prev').addEventListener('click', () => {
+                prevSlide();
+                startAutoSlide();
+            });
 
-        // Initialize first slide
-        showSlide(0);
+            indicators.forEach((indicator, index) => {
+                indicator.addEventListener('click', () => {
+                    if (index === currentSlide) return;
+                    const direction = index > currentSlide ? 'next' : 'prev';
+                    showSlide(index, direction);
+                    startAutoSlide();
+                });
+            });
+
+            // Pause on hover
+            const carouselContainer = document.querySelector('.hero-carousel');
+            carouselContainer.addEventListener('mouseenter', () => {
+                clearInterval(slideInterval);
+            });
+
+            carouselContainer.addEventListener('mouseleave', () => {
+                startAutoSlide();
+            });
+
+            // Start carousel
+            startAutoSlide();
+        }
+
+        // Animation initialization
+        function initAnimations() {
+            // Intersection Observer for fade-in animations
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        // Stop observing after animation
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+
+            // Observe all fade-in elements
+            document.querySelectorAll('.fade-in-content').forEach(element => {
+                observer.observe(element);
+            });
+        }
+
+        // Event listeners
+        function initEventListeners() {
+            // Scroll to top
+            const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+            
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 300) {
+                    scrollToTopBtn.classList.add('visible');
+                } else {
+                    scrollToTopBtn.classList.remove('visible');
+                }
+            });
+
+            scrollToTopBtn.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+
+            // Mobile menu
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            mobileMenuButton.addEventListener('click', (e) => {
+                e.stopPropagation();
+                mobileMenu.classList.toggle('open');
+            });
+
+            // Close mobile menu when clicking outside
+            document.addEventListener('click', (event) => {
+                if (!mobileMenu.contains(event.target) && !mobileMenuButton.contains(event.target)) {
+                    mobileMenu.classList.remove('open');
+                }
+            });
+
+            // Close mobile menu on link click
+            mobileMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.remove('open');
+                });
+            });
+
+            // Contact button
+            document.querySelector('.contact-float').addEventListener('click', () => {
+                alert('Contact form would open here. For this demo, we\'re just showing an alert.');
+            });
+
+            // Form submissions
+            document.querySelectorAll('form').forEach(form => {
+                form.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    if (form.querySelector('input[type="email"]')) {
+                        const email = form.querySelector('input[type="email"]').value;
+                        if (email) {
+                            alert(`Thank you for subscribing with email: ${email}`);
+                            form.reset();
+                        }
+                    } else if (form.querySelector('input[type="text"]')) {
+                        const search = form.querySelector('input[type="text"]').value;
+                        if (search) {
+                            alert(`Searching for: ${search}`);
+                        }
+                    }
+                });
+            });
+
+            // Smooth scroll for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // Prevent default on empty hash links
+            document.querySelectorAll('a[href="#"]').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                });
+            });
+        }
+
+        // Debounce function for performance
+        function debounce(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
+        }
+
+        // Optimize scroll performance
+        window.addEventListener('scroll', debounce(() => {
+            // Any scroll optimizations can go here
+        }, 100));
     </script>
 </body>
 </html>
