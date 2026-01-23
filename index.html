@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Conditor Building Solutions - Professional Engineering & Construction Services. Delivering excellence in construction projects worldwide.">
     <title>Conditor Building Solutions | Professional Engineering & Construction Services</title>
     
     <!-- External Dependencies -->
@@ -10,156 +11,221 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-   
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- Custom Styles -->
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="assets/favicon.ico">
+    
+    <!-- Open Graph / Social Media Meta Tags -->
+    <meta property="og:title" content="Conditor Building Solutions">
+    <meta property="og:description" content="Professional Engineering & Construction Services">
+    <meta property="og:image" content="assets/logo.png">
+    <meta property="og:url" content="https://conditor.com">
+    <meta name="twitter:card" content="summary_large_image">
 </head>
 <body class="bg-gray-50">
     <!-- Top Navigation Bar -->
-    <nav class="fixed top-0 w-full bg-white nav-shadow z-50">
+    <nav class="fixed top-0 w-full bg-white/95 backdrop-blur-sm nav-shadow z-50 transition-all duration-300">
         <div class="container mx-auto px-4 py-3">
             <div class="flex justify-between items-center">
                 <!-- Logo -->
                 <div class="flex items-center">
-                    <h1 class="text-2xl font-bold text-gray-900">Conditor<span class="text-blue-600">.</span></h1>
+                    <a href="#" class="flex items-center group">
+                        <div class="ml-3 hidden md:block">
+                            <h1 class="text-2xl font-bold text-gray-900">Conditor<span class="text-blue-600">.</span></h1>
+                        </div>
+                    </a>
                 </div>
                 
-                <!-- Desktop Navigation - Simplified without dropdowns -->
-                <div class="hidden lg:flex space-x-8">
-                    <a href="#" class="text-gray-700 hover:text-blue-600 font-medium py-2 nav-item">About Us</a>
-                    <a href="#" class="text-gray-700 hover:text-blue-600 font-medium py-2 nav-item">Our Work</a>
-                    <a href="#" class="text-gray-700 hover:text-blue-600 font-medium py-2 nav-item">Insights</a>
-                    <a href="#" class="text-gray-700 hover:text-blue-600 font-medium py-2 nav-item">Careers</a>
-                    <a href="#" class="text-gray-700 hover:text-blue-600 font-medium py-2 nav-item">News</a>
-                    <a href="#" class="text-gray-700 hover:text-blue-600 font-medium py-2 nav-item">Contact</a>
+                <!-- Desktop Navigation -->
+                <div class="hidden lg:flex space-x-8 items-center">
+                    <a href="#" class="text-gray-700 hover:text-blue-600 font-medium py-2 nav-item transition-colors duration-200">About Us</a>
+                    <a href="#" class="text-gray-700 hover:text-blue-600 font-medium py-2 nav-item transition-colors duration-200">Our Work</a>
+                    <a href="#" class="text-gray-700 hover:text-blue-600 font-medium py-2 nav-item transition-colors duration-200">Insights</a>
+                    <a href="#" class="text-gray-700 hover:text-blue-600 font-medium py-2 nav-item transition-colors duration-200">Careers</a>
+                    <a href="#" class="text-gray-700 hover:text-blue-600 font-medium py-2 nav-item transition-colors duration-200">News</a>
+                    <a href="#" class="bg-blue-600 text-white px-6 py-2 rounded-md font-medium hover:bg-blue-700 transition-all duration-300 shadow-sm hover:shadow-md ml-4">Contact</a>
                 </div>
                 
                 <!-- Mobile Menu Button -->
-                <button id="mobile-menu-button" class="lg:hidden text-gray-700">
-                    <i class="fas fa-bars text-2xl"></i>
+                <button id="mobile-menu-button" class="lg:hidden text-gray-700 bg-gray-100 hover:bg-gray-200 w-10 h-10 rounded-md flex items-center justify-center transition-colors duration-200">
+                    <i class="fas fa-bars text-lg"></i>
                 </button>
             </div>
         </div>
     </nav>
 
     <!-- Hero Carousel -->
-    <section class="hero-carousel mt-16 relative">
+    <section class="hero-carousel mt-20 relative overflow-hidden">
         <!-- Slide 1 -->
-        <div class="carousel-slide absolute inset-0" style="background-image: url('https://images.unsplash.com/photo-1541888946425-d81bb19240f5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80');">
-            <div class="absolute inset-0 bg-gradient-to-r from-black/70 to-transparent"></div>
+        <div class="carousel-slide absolute inset-0" style="background-image: url('assets/Pool_at_Night.jpg');">
+            <div class="absolute inset-0 bg-gradient-to-r from-black/75 via-black/50 to-transparent"></div>
             <div class="container mx-auto px-4 h-full flex items-center">
-                <div class="max-w-2xl text-white">
-                    <p class="text-blue-400 font-medium mb-2">DELIVERING EXCELLENCE</p>
-                    <h2 class="text-4xl md:text-5xl font-bold mb-6">Conditor Annual Report 2025</h2>
-                    <p class="text-xl mb-8">Explore the progress, achievements, and impact that defined our 2025</p>
-                    <a href="#" class="inline-flex items-center bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 font-medium">
-                        Download the report <i class="fas fa-chevron-right ml-2"></i>
-                    </a>
+                <div class="max-w-2xl text-white animate-fade-in-up">
+                    <p class="text-blue-400 font-semibold mb-4 tracking-widest text-sm uppercase">DELIVERING EXCELLENCE</p>
+                    <h1 class="text-5xl md:text-6xl font-bold mb-6 leading-tight font-playfair">Conditor Annual<br>Report 2025</h1>
+                    <p class="text-xl mb-8 text-gray-200 max-w-lg">Explore the progress, achievements, and impact that defined our journey in 2025</p>
+                    <div class="flex flex-wrap gap-4">
+                        <a href="#" class="inline-flex items-center bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 font-semibold rounded-md transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+                            Download Report <i class="fas fa-download ml-3"></i>
+                        </a>
+                        <a href="#" class="inline-flex items-center border-2 border-white/30 hover:border-white text-white px-8 py-4 font-semibold rounded-md transition-all duration-300">
+                            Watch Video <i class="fas fa-play ml-3"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
         
         <!-- Slide 2 -->
-        <div class="carousel-slide absolute inset-0 opacity-0" style="background-image: url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80');">
-            <div class="absolute inset-0 bg-gradient-to-r from-black/70 to-transparent"></div>
+        <div class="carousel-slide absolute inset-0 opacity-0" style="background-image: url('assets/Pool_Night.jpg');">
+            <div class="absolute inset-0 bg-gradient-to-r from-black/75 via-black/50 to-transparent"></div>
             <div class="container mx-auto px-4 h-full flex items-center">
                 <div class="max-w-2xl text-white">
-                    <p class="text-blue-400 font-medium mb-2">INDUSTRY INTELLIGENCE</p>
-                    <h2 class="text-4xl md:text-5xl font-bold mb-6">Construction Market Review 2026</h2>
-                    <p class="text-xl mb-8">Essential analysis, market intelligence and thought leadership for the built environment</p>
-                    <a href="#" class="inline-flex items-center bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 font-medium">
-                        Read the report <i class="fas fa-chevron-right ml-2"></i>
+                    <p class="text-blue-400 font-semibold mb-4 tracking-widest text-sm uppercase">INDUSTRY INTELLIGENCE</p>
+                    <h2 class="text-5xl md:text-6xl font-bold mb-6 leading-tight font-playfair">Construction Market<br>Review 2026</h2>
+                    <p class="text-xl mb-8 text-gray-200 max-w-lg">Essential analysis, market intelligence and thought leadership for the built environment</p>
+                    <a href="#" class="inline-flex items-center bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 font-semibold rounded-md transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+                        Read the Report <i class="fas fa-chevron-right ml-3"></i>
                     </a>
                 </div>
             </div>
         </div>
         
         <!-- Slide 3 -->
-        <div class="carousel-slide absolute inset-0 opacity-0" style="background-image: url('https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80');">
-            <div class="absolute inset-0 bg-gradient-to-r from-black/70 to-transparent"></div>
+        <div class="carousel-slide absolute inset-0 opacity-0" style="background-image: url('assets/Corridor.jpg');">
+            <div class="absolute inset-0 bg-gradient-to-r from-black/75 via-black/50 to-transparent"></div>
             <div class="container mx-auto px-4 h-full flex items-center">
                 <div class="max-w-2xl text-white">
-                    <p class="text-blue-400 font-medium mb-2">INNOVATION</p>
-                    <h2 class="text-4xl md:text-5xl font-bold mb-6">Building the Future</h2>
-                    <p class="text-xl mb-8">With global expertise and local insights, we deliver reliable and resilient construction solutions</p>
-                    <a href="#" class="inline-flex items-center bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 font-medium">
-                        Discover more <i class="fas fa-chevron-right ml-2"></i>
+                    <p class="text-blue-400 font-semibold mb-4 tracking-widest text-sm uppercase">INNOVATION</p>
+                    <h2 class="text-5xl md:text-6xl font-bold mb-6 leading-tight font-playfair">Building the<br>Future Together</h2>
+                    <p class="text-xl mb-8 text-gray-200 max-w-lg">With global expertise and local insights, we deliver reliable and resilient construction solutions</p>
+                    <a href="#" class="inline-flex items-center bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 font-semibold rounded-md transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+                        Discover More <i class="fas fa-arrow-right ml-3"></i>
                     </a>
                 </div>
             </div>
         </div>
         
-        <!-- Carousel Indicators -->
+        <!-- Carousel Navigation -->
         <div class="absolute bottom-8 left-0 right-0">
             <div class="container mx-auto px-4">
-                <div class="flex space-x-4" id="carousel-indicators">
-                    <div class="carousel-indicator active w-8 h-1 bg-gray-400 overflow-hidden cursor-pointer">
-                        <div class="progress-bar"></div>
+                <div class="flex items-center justify-between">
+                    <div class="flex space-x-4" id="carousel-indicators">
+                        <div class="carousel-indicator active w-12 h-1 bg-gray-400/50 overflow-hidden cursor-pointer group">
+                            <div class="progress-bar"></div>
+                            <span class="text-xs text-white mt-2 opacity-0 group-hover:opacity-100 transition-opacity">Annual Report</span>
+                        </div>
+                        <div class="carousel-indicator w-12 h-1 bg-gray-400/50 overflow-hidden cursor-pointer group">
+                            <div class="progress-bar"></div>
+                            <span class="text-xs text-white mt-2 opacity-0 group-hover:opacity-100 transition-opacity">Market Review</span>
+                        </div>
+                        <div class="carousel-indicator w-12 h-1 bg-gray-400/50 overflow-hidden cursor-pointer group">
+                            <div class="progress-bar"></div>
+                            <span class="text-xs text-white mt-2 opacity-0 group-hover:opacity-100 transition-opacity">Innovation</span>
+                        </div>
                     </div>
-                    <div class="carousel-indicator w-8 h-1 bg-gray-400 overflow-hidden cursor-pointer">
-                        <div class="progress-bar"></div>
-                    </div>
-                    <div class="carousel-indicator w-8 h-1 bg-gray-400 overflow-hidden cursor-pointer">
-                        <div class="progress-bar"></div>
+                    
+                    <!-- Manual Navigation Arrows -->
+                    <div class="flex space-x-2">
+                        <button class="carousel-prev w-10 h-10 bg-white/20 hover:bg-white/30 text-white rounded-full flex items-center justify-center transition-all duration-300 backdrop-blur-sm">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button class="carousel-next w-10 h-10 bg-white/20 hover:bg-white/30 text-white rounded-full flex items-center justify-center transition-all duration-300 backdrop-blur-sm">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Hero Navigation Items -->
-    <section class="bg-gray-100 py-4">
+    <!-- Stats Section -->
+    <section class="py-12 bg-white border-b">
         <div class="container mx-auto px-4">
-            <div class="flex flex-wrap justify-center gap-4">
-                <div class="flex items-center space-x-2 cursor-pointer">
-                    <div class="w-24 h-1 bg-gray-300 overflow-hidden">
-                        <div class="h-full bg-blue-600 w-full"></div>
-                    </div>
-                    <span class="text-sm font-medium text-gray-700">ANNUAL REPORT 2025</span>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div class="text-center">
+                    <div class="text-4xl font-bold text-blue-600 mb-2">150+</div>
+                    <div class="text-gray-600 font-medium">Projects Completed</div>
                 </div>
-                <div class="flex items-center space-x-2 cursor-pointer">
-                    <div class="w-24 h-1 bg-gray-300 overflow-hidden">
-                        <div class="h-full bg-gray-400 w-0"></div>
-                    </div>
-                    <span class="text-sm font-medium text-gray-700">MARKET REVIEW</span>
+                <div class="text-center">
+                    <div class="text-4xl font-bold text-blue-600 mb-2">40+</div>
+                    <div class="text-gray-600 font-medium">Years Experience</div>
                 </div>
-                <div class="flex items-center space-x-2 cursor-pointer">
-                    <div class="w-24 h-1 bg-gray-300 overflow-hidden">
-                        <div class="h-full bg-gray-400 w-0"></div>
-                    </div>
-                    <span class="text-sm font-medium text-gray-700">BUILDING THE FUTURE</span>
+                <div class="text-center">
+                    <div class="text-4xl font-bold text-blue-600 mb-2">500+</div>
+                    <div class="text-gray-600 font-medium">Expert Employees</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl font-bold text-blue-600 mb-2">98%</div>
+                    <div class="text-gray-600 font-medium">Client Satisfaction</div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Home Feed Section -->
-    <section class="py-12 bg-white">
+    <section class="py-16 bg-white">
         <div class="container mx-auto px-4">
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
                 <div class="lg:col-span-2">
-                    <h3 class="text-2xl font-light text-gray-800 mb-6">Conditor is the trusted construction leader committed to delivering excellence in every project.</h3>
-                    <a href="#" class="inline-flex items-center border border-blue-600 text-blue-600 hover:bg-blue-50 px-6 py-3 font-medium">
-                        About us <i class="fas fa-arrow-right ml-2"></i>
-                    </a>
+                    <div class="mb-8">
+                        <p class="text-blue-600 font-semibold mb-3 tracking-widest text-sm uppercase">Welcome to Conditor</p>
+                        <h3 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6 leading-tight font-playfair">Building Excellence Through Innovation and Integrity</h3>
+                        <p class="text-lg text-gray-600 mb-8 leading-relaxed">Conditor is the trusted construction leader committed to delivering excellence in every project. With over 40 years of experience, we combine traditional craftsmanship with cutting-edge technology to create lasting structures that stand the test of time.</p>
+                        <div class="flex flex-wrap gap-4">
+                            <a href="#" class="inline-flex items-center bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 font-semibold rounded-md transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+                                About Us <i class="fas fa-arrow-right ml-3"></i>
+                            </a>
+                            <a href="#" class="inline-flex items-center border-2 border-gray-300 hover:border-blue-600 text-gray-700 hover:text-blue-600 px-8 py-3 font-semibold rounded-md transition-all duration-300">
+                                Our Services
+                            </a>
+                        </div>
+                    </div>
                 </div>
                 <div class="lg:col-span-1">
-                    <h4 class="text-xl font-bold text-gray-800 mb-6 pb-3 border-b border-gray-200">News</h4>
-                    <div class="space-y-6">
-                        <div>
-                            <p class="text-sm text-gray-500 mb-1">Nov 18, 2025</p>
-                            <a href="#" class="text-gray-800 hover:text-blue-600 font-medium">Conditor reports fourth quarter and full year fiscal 2025 results</a>
+                    <div class="bg-gray-50 rounded-xl p-8 border border-gray-200">
+                        <h4 class="text-xl font-bold text-gray-900 mb-6 pb-4 border-b border-gray-200">Latest News</h4>
+                        <div class="space-y-8">
+                            <div class="group">
+                                <p class="text-sm text-gray-500 mb-2 flex items-center">
+                                    <i class="far fa-calendar mr-2"></i> Nov 18, 2025
+                                </p>
+                                <a href="#" class="text-gray-800 hover:text-blue-600 font-bold text-lg leading-tight transition-colors duration-200 group-hover:translate-x-1 block">Conditor reports fourth quarter and full year fiscal 2025 results</a>
+                                <div class="mt-3 pt-3 border-t border-gray-100">
+                                    <a href="#" class="text-blue-600 text-sm font-medium inline-flex items-center">
+                                        Read More <i class="fas fa-arrow-right ml-2 text-xs"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="group">
+                                <p class="text-sm text-gray-500 mb-2 flex items-center">
+                                    <i class="far fa-calendar mr-2"></i> Nov 5, 2025
+                                </p>
+                                <a href="#" class="text-gray-800 hover:text-blue-600 font-bold text-lg leading-tight transition-colors duration-200 group-hover:translate-x-1 block">Conditor awarded major infrastructure project in downtown development</a>
+                                <div class="mt-3 pt-3 border-t border-gray-100">
+                                    <a href="#" class="text-blue-600 text-sm font-medium inline-flex items-center">
+                                        Read More <i class="fas fa-arrow-right ml-2 text-xs"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="group">
+                                <p class="text-sm text-gray-500 mb-2 flex items-center">
+                                    <i class="far fa-calendar mr-2"></i> Oct 22, 2025
+                                </p>
+                                <a href="#" class="text-gray-800 hover:text-blue-600 font-bold text-lg leading-tight transition-colors duration-200 group-hover:translate-x-1 block">Conditor recognized for sustainability leadership in construction industry</a>
+                                <div class="mt-3 pt-3 border-t border-gray-100">
+                                    <a href="#" class="text-blue-600 text-sm font-medium inline-flex items-center">
+                                        Read More <i class="fas fa-arrow-right ml-2 text-xs"></i>
+                                    </a>
+                                </div>
+                            </div>
                         </div>
-                        <div>
-                            <p class="text-sm text-gray-500 mb-1">Nov 5, 2025</p>
-                            <a href="#" class="text-gray-800 hover:text-blue-600 font-medium">Conditor awarded major infrastructure project in downtown development</a>
-                        </div>
-                        <div>
-                            <p class="text-sm text-gray-500 mb-1">Oct 22, 2025</p>
-                            <a href="#" class="text-gray-800 hover:text-blue-600 font-medium">Conditor recognized for sustainability leadership in construction industry</a>
+                        <div class="mt-8 pt-6 border-t border-gray-200">
+                            <a href="#" class="text-gray-700 hover:text-blue-600 font-medium inline-flex items-center">
+                                View All News <i class="fas fa-arrow-right ml-2"></i>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -168,19 +234,26 @@
     </section>
 
     <!-- Content Grid -->
-    <section class="py-8">
+    <section class="py-16 bg-gray-50">
         <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <p class="text-blue-600 font-semibold mb-3 tracking-widest text-sm uppercase">Featured Projects</p>
+                <h3 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4 font-playfair">Our Portfolio</h3>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">Discover our recent projects that showcase innovation, quality, and sustainable construction practices</p>
+            </div>
+            
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 <!-- Large Box -->
                 <div class="md:col-span-2 lg:col-span-2">
-                    <div class="content-box bg-gray-900 overflow-hidden h-96 relative">
-                        <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80');"></div>
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
-                        <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
-                            <p class="text-blue-400 font-medium mb-2">Insights</p>
-                            <h3 class="text-2xl font-bold mb-4">Sustainable Construction</h3>
-                            <a href="#" class="inline-flex items-center text-white font-medium">
-                                Learn more <i class="fas fa-arrow-right ml-2"></i>
+                    <div class="content-box bg-gray-900 overflow-hidden h-[500px] relative rounded-2xl group">
+                        <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" style="background-image: url('assets/Bakckyard.jpg');"></div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 right-0 p-8 text-white">
+                            <span class="inline-block bg-blue-600 text-white px-4 py-1 rounded-full text-sm font-medium mb-4">Insights</span>
+                            <h3 class="text-3xl font-bold mb-4">Sustainable Construction Practices</h3>
+                            <p class="text-gray-300 mb-6 max-w-lg">Revolutionizing the industry with eco-friendly materials and energy-efficient designs</p>
+                            <a href="#" class="inline-flex items-center text-white font-semibold group-hover:translate-x-2 transition-transform duration-300">
+                                Learn more <i class="fas fa-arrow-right ml-3 text-lg"></i>
                             </a>
                         </div>
                     </div>
@@ -188,13 +261,14 @@
                 
                 <!-- Small Box 1 -->
                 <div class="md:col-span-1 lg:col-span-1">
-                    <div class="content-box bg-gray-900 overflow-hidden h-96 relative">
-                        <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1487956382158-bb926046304a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80');"></div>
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+                    <div class="content-box bg-gray-900 overflow-hidden h-[500px] relative rounded-2xl group">
+                        <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" style="background-image: url('assets/Poolhouse.jpg');"></div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent"></div>
                         <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
-                            <p class="text-blue-400 font-medium mb-2">Project</p>
-                            <h3 class="text-xl font-bold mb-4">Skyline Tower</h3>
-                            <a href="#" class="inline-flex items-center text-white font-medium">
+                            <span class="inline-block bg-green-600 text-white px-4 py-1 rounded-full text-sm font-medium mb-4">Commercial</span>
+                            <h3 class="text-2xl font-bold mb-4">Skyline Tower</h3>
+                            <p class="text-gray-300 mb-4 text-sm">48-story commercial complex</p>
+                            <a href="#" class="inline-flex items-center text-white font-semibold group-hover:translate-x-2 transition-transform duration-300">
                                 View project <i class="fas fa-arrow-right ml-2"></i>
                             </a>
                         </div>
@@ -203,13 +277,14 @@
                 
                 <!-- Small Box 2 -->
                 <div class="md:col-span-1 lg:col-span-1">
-                    <div class="content-box bg-gray-900 overflow-hidden h-96 relative">
-                        <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80');"></div>
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+                    <div class="content-box bg-gray-900 overflow-hidden h-[500px] relative rounded-2xl group">
+                        <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" style="background-image: url('assets/SideView.jpg');"></div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent"></div>
                         <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
-                            <p class="text-blue-400 font-medium mb-2">Report</p>
-                            <h3 class="text-xl font-bold mb-4">Construction Innovation</h3>
-                            <a href="#" class="inline-flex items-center text-white font-medium">
+                            <span class="inline-block bg-purple-600 text-white px-4 py-1 rounded-full text-sm font-medium mb-4">Research</span>
+                            <h3 class="text-2xl font-bold mb-4">Construction Innovation</h3>
+                            <p class="text-gray-300 mb-4 text-sm">Annual technology report</p>
+                            <a href="#" class="inline-flex items-center text-white font-semibold group-hover:translate-x-2 transition-transform duration-300">
                                 Read report <i class="fas fa-arrow-right ml-2"></i>
                             </a>
                         </div>
@@ -218,13 +293,14 @@
                 
                 <!-- Medium Box 1 -->
                 <div class="md:col-span-1 lg:col-span-2">
-                    <div class="content-box bg-gray-900 overflow-hidden h-80 relative">
-                        <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1541888946425-d81bb19240f5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80');"></div>
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
-                        <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
-                            <p class="text-blue-400 font-medium mb-2">Article</p>
-                            <h3 class="text-xl font-bold mb-4">Building the construction workforce of the future</h3>
-                            <a href="#" class="inline-flex items-center text-white font-medium">
+                    <div class="content-box bg-gray-900 overflow-hidden h-[400px] relative rounded-2xl group">
+                        <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" style="background-image: url('assets/AngleShif.jpg');"></div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 right-0 p-8 text-white">
+                            <span class="inline-block bg-orange-600 text-white px-4 py-1 rounded-full text-sm font-medium mb-4">Article</span>
+                            <h3 class="text-2xl font-bold mb-4">Building the construction workforce of the future</h3>
+                            <p class="text-gray-300 mb-6">Training and development programs for next-generation builders</p>
+                            <a href="#" class="inline-flex items-center text-white font-semibold group-hover:translate-x-2 transition-transform duration-300">
                                 Read article <i class="fas fa-arrow-right ml-2"></i>
                             </a>
                         </div>
@@ -233,13 +309,14 @@
                 
                 <!-- Medium Box 2 -->
                 <div class="md:col-span-1 lg:col-span-2">
-                    <div class="content-box bg-gray-900 overflow-hidden h-80 relative">
-                        <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80');"></div>
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
-                        <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
-                            <p class="text-blue-400 font-medium mb-2">People</p>
-                            <h3 class="text-xl font-bold mb-4">Meet our construction experts and leaders</h3>
-                            <a href="#" class="inline-flex items-center text-white font-medium">
+                    <div class="content-box bg-gray-900 overflow-hidden h-[400px] relative rounded-2xl group">
+                        <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" style="background-image: url('assets/1024W_F_903491003_kz1P599z53v35');"></div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 right-0 p-8 text-white">
+                            <span class="inline-block bg-red-600 text-white px-4 py-1 rounded-full text-sm font-medium mb-4">Leadership</span>
+                            <h3 class="text-2xl font-bold mb-4">Meet our construction experts and leaders</h3>
+                            <p class="text-gray-300 mb-6">Industry veterans with decades of experience</p>
+                            <a href="#" class="inline-flex items-center text-white font-semibold group-hover:translate-x-2 transition-transform duration-300">
                                 Meet the team <i class="fas fa-arrow-right ml-2"></i>
                             </a>
                         </div>
@@ -250,61 +327,121 @@
     </section>
 
     <!-- Careers Section -->
-    <section class="home-careers-bg py-20">
-        <div class="container mx-auto px-4">
+    <section class="py-20 bg-gradient-to-r from-blue-900 via-blue-800 to-blue-900 relative overflow-hidden">
+        <div class="absolute inset-0 bg-black/50"></div>
+        <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 via-blue-400 to-blue-500"></div>
+        <div class="container mx-auto px-4 relative z-10">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 <div class="text-white">
-                    <p class="text-blue-400 font-medium mb-2">Career opportunities</p>
-                    <h2 class="text-3xl md:text-4xl font-bold mb-6">At Conditor, we're driven by a common purpose to build a better world</h2>
-                    <p class="text-gray-200 text-lg mb-8">Ideas have no borders and this ethos is embedded in our culture. Join us in creating legacies for generations to come.</p>
-                    <form class="flex flex-col sm:flex-row gap-4">
-                        <input type="text" placeholder="Search for jobs" class="flex-grow px-6 py-3 text-gray-800">
-                        <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 font-medium">
-                            Search
+                    <p class="text-blue-300 font-semibold mb-4 tracking-widest text-sm uppercase">Career opportunities</p>
+                    <h2 class="text-4xl md:text-5xl font-bold mb-6 leading-tight font-playfair">Build Your Legacy With Us</h2>
+                    <p class="text-gray-200 text-lg mb-8 leading-relaxed">At Conditor, we're driven by a common purpose to build a better world. Ideas have no borders and this ethos is embedded in our culture. Join us in creating legacies for generations to come.</p>
+                    <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 mb-8 border border-white/20">
+                        <h4 class="text-xl font-bold mb-4">Why Join Conditor?</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="flex items-start">
+                                <i class="fas fa-gem text-blue-300 mr-3 mt-1"></i>
+                                <span>Competitive compensation & benefits</span>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fas fa-graduation-cap text-blue-300 mr-3 mt-1"></i>
+                                <span>Continuous learning & development</span>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fas fa-leaf text-blue-300 mr-3 mt-1"></i>
+                                <span>Sustainable work practices</span>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fas fa-users text-blue-300 mr-3 mt-1"></i>
+                                <span>Inclusive & diverse culture</span>
+                            </div>
+                        </div>
+                    </div>
+                    <form class="bg-white rounded-xl p-2 flex flex-col sm:flex-row gap-2 shadow-2xl">
+                        <input type="text" placeholder="Search for jobs, departments, or locations..." class="flex-grow px-6 py-4 text-gray-800 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 font-semibold rounded-lg transition-all duration-300 hover:shadow-lg whitespace-nowrap">
+                            <i class="fas fa-search mr-2"></i> Search Jobs
                         </button>
                     </form>
                 </div>
-                <div class="hidden lg:block">
-                    <div class="h-64 bg-gradient-to-r from-blue-900/30 to-blue-600/30"></div>
+                <div class="relative">
+                    <div class="relative rounded-2xl overflow-hidden shadow-2xl">
+                        <img src="assets/Pool_at_Night.jpg" alt="Construction Team" class="w-full h-[500px] object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-blue-900/60 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 right-0 p-8 text-white">
+                            <div class="text-4xl font-bold mb-2">Join Our Team</div>
+                            <p class="text-lg">Be part of something bigger</p>
+                        </div>
+                    </div>
+                    <div class="absolute -top-6 -right-6 w-24 h-24 bg-yellow-500 rounded-full flex items-center justify-center shadow-xl">
+                        <span class="text-white font-bold text-sm text-center px-4">NOW<br>HIRING</span>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Social Media Feeds -->
-    <section class="py-16 bg-white">
+    <section class="py-20 bg-white">
         <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <p class="text-blue-600 font-semibold mb-3 tracking-widest text-sm uppercase">Social Media</p>
+                <h3 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4 font-playfair">Connect With Us</h3>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">Follow our journey and stay updated with the latest from Conditor Building Solutions</p>
+            </div>
+            
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 <!-- LinkedIn Feed -->
-                <div class="social-feed overflow-hidden">
-                    <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1487956382158-bb926046304a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80');"></div>
-                    <div class="social-feed-content p-8 h-full flex flex-col justify-end">
+                <div class="social-feed overflow-hidden rounded-2xl shadow-xl group">
+                    <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" style="background-image: url('assets/Corridor.jpg');"></div>
+                    <div class="social-feed-content p-8 h-full flex flex-col justify-end relative">
                         <div class="mb-6">
-                            <p class="text-blue-400 font-medium mb-2 inline-flex items-center">
-                                LinkedIn <i class="fab fa-linkedin-in ml-2"></i>
-                            </p>
-                            <h3 class="text-2xl font-bold text-white mb-4">Redefining construction excellence</h3>
-                            <p class="text-gray-200">Our latest project has been recognized for its innovative design and sustainable approach. Explore the unique features of this landmark construction.</p>
+                            <div class="flex items-center mb-4">
+                                <div class="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center mr-4">
+                                    <i class="fab fa-linkedin-in text-white text-xl"></i>
+                                </div>
+                                <div>
+                                    <p class="text-white font-semibold text-lg">Conditor Building Solutions</p>
+                                    <p class="text-gray-300 text-sm">12k followers • 2d ago</p>
+                                </div>
+                            </div>
+                            <h3 class="text-2xl font-bold text-white mb-4">Redefining construction excellence through innovation</h3>
+                            <p class="text-gray-200 mb-4">Our latest project has been recognized for its innovative design and sustainable approach. Explore the unique features of this landmark construction that's setting new industry standards.</p>
+                            <div class="flex items-center text-gray-300 text-sm">
+                                <span class="mr-4"><i class="far fa-heart mr-1"></i> 245</span>
+                                <span><i class="far fa-comment mr-1"></i> 42</span>
+                            </div>
                         </div>
-                        <a href="#" class="inline-flex items-center text-white font-medium">
-                            Follow us <i class="fas fa-arrow-right ml-2"></i>
+                        <a href="#" class="inline-flex items-center bg-white text-blue-600 px-6 py-3 font-semibold rounded-lg transition-all duration-300 hover:bg-gray-100 hover:shadow-lg w-fit">
+                            <i class="fab fa-linkedin-in mr-3"></i> Follow on LinkedIn
                         </a>
                     </div>
                 </div>
                 
                 <!-- Instagram Feed -->
-                <div class="social-feed overflow-hidden">
-                    <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1541888946425-d81bb19240f5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80');"></div>
-                    <div class="social-feed-content p-8 h-full flex flex-col justify-end">
+                <div class="social-feed overflow-hidden rounded-2xl shadow-xl group">
+                    <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" style="background-image: url('assets/Pool_Night.jpg');"></div>
+                    <div class="social-feed-content p-8 h-full flex flex-col justify-end relative">
                         <div class="mb-6">
-                            <p class="text-blue-400 font-medium mb-2 inline-flex items-center">
-                                #ConditorVoices <i class="fab fa-instagram ml-2"></i>
-                            </p>
+                            <div class="flex items-center mb-4">
+                                <div class="w-12 h-12 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full flex items-center justify-center mr-4">
+                                    <i class="fab fa-instagram text-white text-xl"></i>
+                                </div>
+                                <div>
+                                    <p class="text-white font-semibold text-lg">@ConditorBuild</p>
+                                    <p class="text-gray-300 text-sm">#ConditorVoices • 1d ago</p>
+                                </div>
+                            </div>
                             <h3 class="text-2xl font-bold text-white mb-4">Connecting with tomorrow's talent</h3>
-                            <p class="text-gray-200">"Last month, I had the privilege of joining my Conditor team to host and interview upcoming construction and engineering graduates."</p>
+                            <p class="text-gray-200 mb-4 italic">"Last month, I had the privilege of joining my Conditor team to host and interview upcoming construction and engineering graduates. The passion and innovation we saw were truly inspiring!"</p>
+                            <p class="text-gray-300 text-sm">— Sarah Johnson, Senior Project Manager</p>
+                            <div class="flex items-center text-gray-300 text-sm mt-4">
+                                <span class="mr-4"><i class="far fa-heart mr-1"></i> 1.2k</span>
+                                <span><i class="far fa-comment mr-1"></i> 89</span>
+                            </div>
                         </div>
-                        <a href="#" class="inline-flex items-center text-white font-medium">
-                            Continue reading <i class="fas fa-arrow-right ml-2"></i>
+                        <a href="#" class="inline-flex items-center bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-3 font-semibold rounded-lg transition-all duration-300 hover:shadow-lg w-fit">
+                            <i class="fab fa-instagram mr-3"></i> Follow on Instagram
                         </a>
                     </div>
                 </div>
@@ -312,81 +449,106 @@
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="footer-bg text-white pt-12 pb-8">
+    <!-- Newsletter Section -->
+    <section class="py-20 bg-gray-50 border-t">
         <div class="container mx-auto px-4">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-12">
+            <div class="max-w-2xl mx-auto text-center">
+                <h3 class="text-3xl font-bold text-gray-900 mb-4 font-playfair">Stay Informed</h3>
+                <p class="text-lg text-gray-600 mb-8">Subscribe to our newsletter for the latest updates, insights, and project highlights</p>
+                <form class="flex flex-col sm:flex-row gap-4">
+                    <input type="email" placeholder="Your email address" class="flex-grow px-6 py-4 text-gray-800 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 font-semibold rounded-lg transition-all duration-300 hover:shadow-lg whitespace-nowrap">
+                        Subscribe
+                    </button>
+                </form>
+                <p class="text-gray-500 text-sm mt-4">By subscribing, you agree to our Privacy Policy. You may unsubscribe at any time.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer-bg text-white pt-16 pb-8" style="background-color: #0f172a;">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-12">
                 <div class="lg:col-span-2">
-                    <div class="flex items-center mb-6">
-                        <h2 class="text-2xl font-bold">Conditor<span class="text-blue-400">.</span></h2>
+                    <div class="flex items-center mb-8">
+                        
+                        <div>
+                            <h1 class="text-2xl font-bold text-white">Conditor<span class="text-blue-600">.</span></h1>
+                        </div>
                     </div>
-                    <p class="text-gray-400 mb-6">The trusted construction leader committed to delivering excellence in every project.</p>
+                    <p class="text-gray-400 mb-8 leading-relaxed max-w-lg">The trusted construction leader committed to delivering excellence in every project. Building the future with innovation, integrity, and sustainable practices since 1983.</p>
                     <div class="flex space-x-4">
-                        <a href="#" class="w-10 h-10 bg-gray-800 flex items-center justify-center hover:bg-blue-600">
+                        <a href="#" class="w-12 h-12 bg-gray-800 hover:bg-blue-600 flex items-center justify-center rounded-full transition-all duration-300 hover:-translate-y-1">
                             <i class="fab fa-facebook-f"></i>
                         </a>
-                        <a href="#" class="w-10 h-10 bg-gray-800 flex items-center justify-center hover:bg-blue-600">
+                        <a href="#" class="w-12 h-12 bg-gray-800 hover:bg-blue-400 flex items-center justify-center rounded-full transition-all duration-300 hover:-translate-y-1">
                             <i class="fab fa-twitter"></i>
                         </a>
-                        <a href="#" class="w-10 h-10 bg-gray-800 flex items-center justify-center hover:bg-blue-600">
+                        <a href="#" class="w-12 h-12 bg-gray-800 hover:bg-blue-700 flex items-center justify-center rounded-full transition-all duration-300 hover:-translate-y-1">
                             <i class="fab fa-linkedin-in"></i>
                         </a>
-                        <a href="#" class="w-10 h-10 bg-gray-800 flex items-center justify-center hover:bg-blue-600">
+                        <a href="#" class="w-12 h-12 bg-gray-800 hover:bg-pink-600 flex items-center justify-center rounded-full transition-all duration-300 hover:-translate-y-1">
                             <i class="fab fa-instagram"></i>
                         </a>
-                        <a href="#" class="w-10 h-10 bg-gray-800 flex items-center justify-center hover:bg-blue-600">
+                        <a href="#" class="w-12 h-12 bg-gray-800 hover:bg-red-600 flex items-center justify-center rounded-full transition-all duration-300 hover:-translate-y-1">
                             <i class="fab fa-youtube"></i>
                         </a>
                     </div>
                 </div>
                 
                 <div>
-                    <h3 class="text-lg font-bold mb-6">Company</h3>
-                    <ul class="space-y-3">
-                        <li><a href="#" class="text-gray-400 hover:text-white">About Conditor</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">Markets</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">Services</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">Projects</a></li>
+                    <h3 class="text-lg font-bold mb-8 pb-2 border-b border-gray-800">Company</h3>
+                    <ul class="space-y-4">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-200 flex items-center group"><i class="fas fa-chevron-right mr-2 text-xs opacity-0 group-hover:opacity-100 transition-opacity"></i> About Conditor</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-200 flex items-center group"><i class="fas fa-chevron-right mr-2 text-xs opacity-0 group-hover:opacity-100 transition-opacity"></i> Markets</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-200 flex items-center group"><i class="fas fa-chevron-right mr-2 text-xs opacity-0 group-hover:opacity-100 transition-opacity"></i> Services</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-200 flex items-center group"><i class="fas fa-chevron-right mr-2 text-xs opacity-0 group-hover:opacity-100 transition-opacity"></i> Projects</a></li>
                     </ul>
                 </div>
                 
                 <div>
-                    <h3 class="text-lg font-bold mb-6">Resources</h3>
-                    <ul class="space-y-3">
-                        <li><a href="#" class="text-gray-400 hover:text-white">Careers</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">Offices</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">Contact Us</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">Site Map</a></li>
+                    <h3 class="text-lg font-bold mb-8 pb-2 border-b border-gray-800">Resources</h3>
+                    <ul class="space-y-4">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-200 flex items-center group"><i class="fas fa-chevron-right mr-2 text-xs opacity-0 group-hover:opacity-100 transition-opacity"></i> Careers</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-200 flex items-center group"><i class="fas fa-chevron-right mr-2 text-xs opacity-0 group-hover:opacity-100 transition-opacity"></i> Offices</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-200 flex items-center group"><i class="fas fa-chevron-right mr-2 text-xs opacity-0 group-hover:opacity-100 transition-opacity"></i> Contact Us</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-200 flex items-center group"><i class="fas fa-chevron-right mr-2 text-xs opacity-0 group-hover:opacity-100 transition-opacity"></i> Site Map</a></li>
                     </ul>
                 </div>
                 
                 <div>
-                    <h3 class="text-lg font-bold mb-6">Insights</h3>
-                    <ul class="space-y-3">
-                        <li><a href="#" class="text-gray-400 hover:text-white">Industry Insights</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">News</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">Blog</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">Social Media</a></li>
+                    <h3 class="text-lg font-bold mb-8 pb-2 border-b border-gray-800">Insights</h3>
+                    <ul class="space-y-4">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-200 flex items-center group"><i class="fas fa-chevron-right mr-2 text-xs opacity-0 group-hover:opacity-100 transition-opacity"></i> Industry Insights</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-200 flex items-center group"><i class="fas fa-chevron-right mr-2 text-xs opacity-0 group-hover:opacity-100 transition-opacity"></i> News</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-200 flex items-center group"><i class="fas fa-chevron-right mr-2 text-xs opacity-0 group-hover:opacity-100 transition-opacity"></i> Blog</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-200 flex items-center group"><i class="fas fa-chevron-right mr-2 text-xs opacity-0 group-hover:opacity-100 transition-opacity"></i> Reports</a></li>
                     </ul>
                 </div>
             </div>
             
             <div class="pt-8 border-t border-gray-800">
                 <div class="flex flex-col md:flex-row justify-between items-center">
-                    <p class="text-gray-400 mb-4 md:mb-0">© 2026 Conditor Building Solutions. All Rights Reserved.</p>
+                    <p class="text-gray-400 mb-4 md:mb-0 text-sm">© 2026 Conditor Building Solutions. All Rights Reserved.</p>
                     <div class="flex flex-wrap gap-4">
-                        <a href="#" class="text-gray-400 hover:text-white text-sm">Terms of Use</a>
-                        <span class="text-gray-600">|</span>
-                        <a href="#" class="text-gray-400 hover:text-white text-sm">Privacy Policy</a>
-                        <span class="text-gray-600">|</span>
-                        <a href="#" class="text-gray-400 hover:text-white text-sm">Cookie Policy</a>
-                        <span class="text-gray-600">|</span>
-                        <a href="#" class="text-gray-400 hover:text-white text-sm">Cookie Settings</a>
+                        <a href="#" class="text-gray-400 hover:text-white text-sm transition-colors duration-200">Terms of Use</a>
+                        <a href="#" class="text-gray-400 hover:text-white text-sm transition-colors duration-200">Privacy Policy</a>
+                        <a href="#" class="text-gray-400 hover:text-white text-sm transition-colors duration-200">Cookie Policy</a>
+                        <a href="#" class="text-gray-400 hover:text-white text-sm transition-colors duration-200">Accessibility</a>
                     </div>
                 </div>
             </div>
         </div>
     </footer>
+
+    <!-- Contact Float Button -->
+    <div class="fixed bottom-8 right-8 z-40">
+        <button class="contact-float bg-blue-600 hover:bg-blue-700 text-white rounded-full w-14 h-14 flex items-center justify-center shadow-2xl transition-all duration-300 hover:scale-110 hover:shadow-3xl group">
+            <i class="fas fa-comment text-xl"></i>
+            <span class="absolute right-full mr-4 bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity shadow-lg">Contact Us</span>
+        </button>
+    </div>
 
     <!-- Scroll to Top Button -->
     <div class="scroll-to-top" id="scrollToTopBtn">
