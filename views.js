@@ -112,12 +112,12 @@ class ImageSlider {
 document.addEventListener('DOMContentLoaded', () => {
   const slider = new ImageSlider();
   
-  // Optional: Add resize handler to adjust image size
+  // Set circle diameter to be larger (65% of viewport)
   const setDiameter = () => {
     const sliderEl = document.querySelector('.slider');
     const width = sliderEl.offsetWidth;
     const height = sliderEl.offsetHeight;
-    const diameter = Math.min(width, height) * 0.5;
+    const diameter = Math.min(width, height) * 0.65; // Increased to 65% for pro look
     
     document.documentElement.style.setProperty('--diameter', `${diameter}px`);
   };

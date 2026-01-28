@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@300;400;600;700&display=swap');
-
 /* Reset & Base Styles */
 * {
   margin: 0;
@@ -16,7 +14,7 @@ body {
 }
 
 :root {
-  --diameter: 500px;
+  --diameter: 550px; /* Increased for pro look */
   --slide-duration: 1s;
   --slide-timing: cubic-bezier(0.645, 0.045, 0.355, 1);
 }
@@ -282,7 +280,7 @@ header {
 /* Responsive Design */
 @media (max-width: 1200px) {
   :root {
-    --diameter: 400px;
+    --diameter: 450px; /* Increased from 400px */
   }
   
   .slider .list .items {
@@ -297,7 +295,7 @@ header {
 
 @media (max-width: 992px) {
   :root {
-    --diameter: 350px;
+    --diameter: 400px; /* Increased from 350px */
   }
   
   .slider .list .items {
@@ -318,7 +316,7 @@ header {
 
 @media (max-width: 768px) {
   :root {
-    --diameter: 280px;
+    --diameter: 320px; /* Increased from 280px */
   }
   
   header {
@@ -349,7 +347,7 @@ header {
 
 @media (max-width: 480px) {
   :root {
-    --diameter: 220px;
+    --diameter: 260px; /* Increased from 220px */
   }
   
   .slider .list .items .content h2 {
