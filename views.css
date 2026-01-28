@@ -19,35 +19,32 @@ body {
   --slide-timing: cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 
-/* Header */
+/* Header - MATCHED WITH INDEX.HTML */
 header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1000;
-  padding: 20px 40px;
+  width: min(1200px, 90vw);
+  height: 70px;
+  margin: auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  backdrop-filter: blur(10px);
-  background: rgba(10, 25, 47, 0.8);
+  position: relative;
+  z-index: 10;
+  padding: 0 10px;
 }
 
 .conditor-logo {
-  font-family: 'Poppins', sans-serif;
-  font-size: 28px;
-  font-weight: 700;
-  color: #fff;
   text-decoration: none;
-  letter-spacing: 1px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #fff;
+  font-family: system-ui, -apple-system, sans-serif;
 }
 
 .blue-dot {
-  color: #00b4d8;
+  color: #2563eb;
 }
 
-/* Navigation Styles */
+/* Navigation Styles - MATCHED WITH INDEX.HTML */
 .main-nav {
   display: flex;
   align-items: center;
@@ -68,6 +65,7 @@ header {
 .nav-link {
   color: #fff;
   text-decoration: none;
+  font-family: sans-serif;
   font-size: 0.9rem;
   font-weight: 500;
   text-transform: uppercase;
@@ -78,7 +76,7 @@ header {
 }
 
 .nav-link:hover {
-  color: #00b4d8;
+  color: #4dabf7;
 }
 
 .nav-link::after {
@@ -88,7 +86,7 @@ header {
   left: 0;
   width: 0;
   height: 2px;
-  background: #00b4d8;
+  background: #4dabf7;
   transition: width 0.3s ease;
 }
 
@@ -96,16 +94,49 @@ header {
   width: 100%;
 }
 
-.menu-icon {
-  color: #fff;
-  cursor: pointer;
-  transition: transform 0.3s;
+.mobile-menu-btn {
   display: none;
+  cursor: pointer;
+  margin-left: 1rem;
 }
 
-.menu-icon:hover {
-  transform: scale(1.1);
+.menu-icon {
+  width: 24px;
+  height: 24px;
+  stroke: #fff;
 }
+
+/* Responsive Navigation - MATCHED WITH INDEX.HTML */
+@media (max-width: 768px) {
+  .nav-list {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.9);
+    flex-direction: column;
+    padding: 1rem;
+    gap: 1rem;
+    z-index: 1000;
+  }
+
+  .nav-list.active {
+    display: flex;
+  }
+
+  .mobile-menu-btn {
+    display: block;
+  }
+
+  .nav-link {
+    font-size: 1rem;
+    padding: 0.75rem 1rem;
+    display: block;
+  }
+}
+
+/* THE REST OF YOUR SLIDER STYLES REMAIN UNCHANGED */
 
 /* Slider Container */
 .slider {
@@ -369,15 +400,7 @@ header {
     --diameter: 320px;
   }
   
-  header {
-    padding: 15px 20px;
-  }
-  
-  .conditor-logo {
-    font-size: 24px;
-  }
-  
-  /* Mobile Navigation */
+  /* Mobile Navigation Styles (unchanged except for padding) */
   .nav-list {
     display: none;
     position: absolute;

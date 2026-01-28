@@ -149,8 +149,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }, { passive: true });
 });
 
-
-// Mobile menu toggle for views.js
+// Mobile menu toggle - EXACTLY LIKE INDEX.HTML VERSION
 document.addEventListener('DOMContentLoaded', function() {
   const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
   const navList = document.querySelector('.nav-list');
@@ -158,9 +157,6 @@ document.addEventListener('DOMContentLoaded', function() {
   if (mobileMenuBtn) {
     mobileMenuBtn.addEventListener('click', function() {
       navList.classList.toggle('active');
-      // Toggle menu icon animation
-      const menuIcon = this.querySelector('.menu-icon');
-      menuIcon.classList.toggle('active');
     });
     
     // Close menu when clicking a link
@@ -168,18 +164,7 @@ document.addEventListener('DOMContentLoaded', function() {
     navLinks.forEach(link => {
       link.addEventListener('click', function() {
         navList.classList.remove('active');
-        const menuIcon = document.querySelector('.menu-icon');
-        if (menuIcon) menuIcon.classList.remove('active');
       });
-    });
-    
-    // Close menu when clicking outside
-    document.addEventListener('click', function(event) {
-      if (!event.target.closest('.main-nav') && navList.classList.contains('active')) {
-        navList.classList.remove('active');
-        const menuIcon = document.querySelector('.menu-icon');
-        if (menuIcon) menuIcon.classList.remove('active');
-      }
     });
   }
 });
