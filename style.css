@@ -120,13 +120,14 @@ a span {
   background-size: cover;
   border-radius: 50%;
   position: relative;
+  
 }
 
 .slider .list .image::before,
 .slider .list .image::after {
   position: absolute;
-  width: 70%;
-  height: 70%;
+  width: 100%;
+  height: 100%;
   content: '';
   border-radius: 50%;
   background-image: 
@@ -143,6 +144,7 @@ a span {
   width: 30%;
   height: 30%;
   background-image: var(--url);
+ 
 }
 
 /* animation */

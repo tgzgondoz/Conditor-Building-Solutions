@@ -1,0 +1,362 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@300;400;600;700&display=swap');
+
+/* Reset & Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: #0a192f;
+  color: #fff;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+:root {
+  --diameter: 500px;
+  --slide-duration: 1s;
+  --slide-timing: cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+/* Header */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  padding: 20px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  backdrop-filter: blur(10px);
+  background: rgba(10, 25, 47, 0.8);
+}
+
+.conditor-logo {
+  font-family: 'Poppins', sans-serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: #fff;
+  text-decoration: none;
+  letter-spacing: 1px;
+}
+
+.blue-dot {
+  color: #00b4d8;
+}
+
+.menu-icon {
+  color: #fff;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.menu-icon:hover {
+  transform: scale(1.1);
+}
+
+/* Slider Container */
+.slider {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+/* List Container */
+.slider .list {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+/* Individual Slides */
+.slider .list .items {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 80px;
+  gap: 100px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--slide-duration) var(--slide-timing);
+}
+
+/* Active Slide */
+.slider .list .items.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Image Container */
+.slider .list .items .image {
+  width: var(--diameter);
+  height: var(--diameter);
+  min-width: var(--diameter);
+  min-height: var(--diameter);
+  border-radius: 50%;
+  background-image: var(--url);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  transform: scale(0.8) rotate(0deg);
+  transition: transform var(--slide-duration) var(--slide-timing);
+}
+
+/* Image Effects */
+.slider .list .items .image::before {
+  content: '';
+  position: absolute;
+  inset: -20px;
+  border-radius: 50%;
+  background: linear-gradient(45deg, transparent, rgba(0, 180, 216, 0.3), transparent);
+  z-index: -1;
+  animation: rotate 20s linear infinite;
+}
+
+.slider .list .items .image::after {
+  content: '';
+  position: absolute;
+  inset: -10px;
+  border-radius: 50%;
+  background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  z-index: -2;
+}
+
+/* Active Image */
+.slider .list .items.active .image {
+  transform: scale(1) rotate(360deg);
+}
+
+/* Previous/Next Images */
+.slider .list .items.prev .image {
+  transform: translateX(-100%) scale(0.6) rotate(-360deg);
+  opacity: 0.3;
+}
+
+.slider .list .items.next .image {
+  transform: translateX(100%) scale(0.6) rotate(360deg);
+  opacity: 0.3;
+}
+
+/* Content Container */
+.slider .list .items .content {
+  max-width: 600px;
+  opacity: 0;
+  transform: translateX(50px);
+  transition: all var(--slide-duration) var(--slide-timing);
+  transition-delay: 0.3s;
+}
+
+/* Active Content */
+.slider .list .items.active .content {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Previous/Next Content */
+.slider .list .items.prev .content,
+.slider .list .items.next .content {
+  opacity: 0;
+  transform: translateX(100px);
+}
+
+/* Heading */
+.slider .list .items .content h2 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 120px;
+  line-height: 0.9;
+  letter-spacing: 2px;
+  margin-bottom: 40px;
+  color: #fff;
+  text-transform: uppercase;
+  background: linear-gradient(45deg, #fff, #00b4d8);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Paragraphs */
+.slider .list .items .content p {
+  font-size: 18px;
+  line-height: 1.8;
+  margin-bottom: 30px;
+  color: #ccd6f6;
+  letter-spacing: 0.5px;
+}
+
+.slider .list .items .content .small-text {
+  font-size: 16px;
+  color: #8892b0;
+  font-style: italic;
+  margin-top: 20px;
+}
+
+/* Navigation Arrows */
+.arrows {
+  position: absolute;
+  bottom: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 30px;
+  z-index: 100;
+}
+
+.arrow-btn {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: rgba(0, 180, 216, 0.2);
+  border: 2px solid rgba(0, 180, 216, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.arrow-btn:hover {
+  background: rgba(0, 180, 216, 0.4);
+  border-color: #00b4d8;
+  transform: scale(1.1);
+}
+
+.arrow-btn svg {
+  width: 24px;
+  height: 24px;
+  stroke: #fff;
+}
+
+/* Dots Navigation */
+.dots {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 15px;
+  z-index: 100;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.dot.active {
+  background: #00b4d8;
+  transform: scale(1.3);
+}
+
+.dot:hover {
+  background: #00b4d8;
+  transform: scale(1.2);
+}
+
+/* Animation */
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  :root {
+    --diameter: 400px;
+  }
+  
+  .slider .list .items {
+    gap: 60px;
+    padding: 0 40px;
+  }
+  
+  .slider .list .items .content h2 {
+    font-size: 90px;
+  }
+}
+
+@media (max-width: 992px) {
+  :root {
+    --diameter: 350px;
+  }
+  
+  .slider .list .items {
+    flex-direction: column;
+    gap: 40px;
+    padding: 100px 20px;
+    text-align: center;
+  }
+  
+  .slider .list .items .content h2 {
+    font-size: 70px;
+  }
+  
+  .slider .list .items .content {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --diameter: 280px;
+  }
+  
+  header {
+    padding: 15px 20px;
+  }
+  
+  .conditor-logo {
+    font-size: 24px;
+  }
+  
+  .slider .list .items .content h2 {
+    font-size: 50px;
+  }
+  
+  .slider .list .items .content p {
+    font-size: 16px;
+  }
+  
+  .arrows {
+    bottom: 40px;
+  }
+  
+  .arrow-btn {
+    width: 50px;
+    height: 50px;
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --diameter: 220px;
+  }
+  
+  .slider .list .items .content h2 {
+    font-size: 40px;
+  }
+  
+  .slider .list .items {
+    padding: 120px 15px;
+  }
+}
