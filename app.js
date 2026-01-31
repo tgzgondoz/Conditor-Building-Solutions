@@ -1,9 +1,11 @@
+// Slider functionality
 let items = document.querySelectorAll('.slider .items');
 let prevBtn = document.querySelector('#prev');
 let nextBtn = document.querySelector('#next');
 let lastPosition = items.length - 1;
 let firstPosition = 0;
 let active = 0;
+let autoSlideInterval;
 
 nextBtn.onclick = () => {
    active++;
@@ -38,7 +40,29 @@ const setSlider = () => {
    } else {
        prevBtn.classList.remove('d-none');
    }
+   
+   // Update dots
+   updateDots();
 }
+
+const updateDots = () => {
+    const dots = document.querySelectorAll('.dot');
+    dots.forEach(dot => {
+        dot.classList.remove('active');
+        if (parseInt(dot.getAttribute('data-index')) === active) {
+            dot.classList.add('active');
+        }
+    });
+}
+
+// Dot navigation
+document.querySelectorAll('.dot').forEach(dot => {
+    dot.addEventListener('click', function() {
+        const index = parseInt(this.getAttribute('data-index'));
+        active = index;
+        setSlider();
+    });
+});
 
 const setDiameter = () => {
     let slider = document.querySelector('.slider');
@@ -49,9 +73,30 @@ const setDiameter = () => {
     document.documentElement.style.setProperty('--diameter', diameter + 'px');
 }
 
+// Auto slide functionality
+const startAutoSlide = () => {
+    autoSlideInterval = setInterval(() => {
+        if (active < lastPosition) {
+            active++;
+        } else {
+            active = firstPosition;
+        }
+        setSlider();
+    }, 5000); // Change slide every 5 seconds
+}
+
+const stopAutoSlide = () => {
+    clearInterval(autoSlideInterval);
+}
+
 // Initialize
 setDiameter();
 setSlider();
+startAutoSlide();
+
+// Pause auto slide on hover
+document.querySelector('.slider').addEventListener('mouseenter', stopAutoSlide);
+document.querySelector('.slider').addEventListener('mouseleave', startAutoSlide);
 
 window.addEventListener('resize', setDiameter);
 
@@ -61,11 +106,14 @@ let touchEndX = 0;
 
 document.querySelector('.slider').addEventListener('touchstart', (e) => {
     touchStartX = e.changedTouches[0].screenX;
+    stopAutoSlide();
 });
 
 document.querySelector('.slider').addEventListener('touchend', (e) => {
     touchEndX = e.changedTouches[0].screenX;
     handleSwipe();
+    // Restart auto slide after a delay
+    setTimeout(startAutoSlide, 3000);
 });
 
 const handleSwipe = () => {
@@ -73,10 +121,16 @@ const handleSwipe = () => {
     
     if (touchStartX - touchEndX > swipeThreshold) {
         // Swipe left - go to next
-        nextBtn.onclick();
+        if (active < lastPosition) {
+            active++;
+            setSlider();
+        }
     } else if (touchEndX - touchStartX > swipeThreshold) {
         // Swipe right - go to previous
-        prevBtn.onclick();
+        if (active > firstPosition) {
+            active--;
+            setSlider();
+        }
     }
 }
 
@@ -98,4 +152,52 @@ document.addEventListener('DOMContentLoaded', function() {
       });
     });
   }
+  
+  // Smooth scrolling for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      e.preventDefault();
+      
+      const targetId = this.getAttribute('href');
+      if (targetId === '#') return;
+      
+      const targetElement = document.querySelector(targetId);
+      if (targetElement) {
+        window.scrollTo({
+          top: targetElement.offsetTop - 80,
+          behavior: 'smooth'
+        });
+      }
+    });
+  });
+  
+  // Newsletter form submission
+  const newsletterForm = document.querySelector('.newsletter-form');
+  if (newsletterForm) {
+    newsletterForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const emailInput = this.querySelector('input[type="email"]');
+      const email = emailInput.value;
+      
+      if (email && email.includes('@')) {
+        // In a real application, you would send this to your server
+        alert('Thank you for subscribing to our newsletter!');
+        emailInput.value = '';
+      } else {
+        alert('Please enter a valid email address.');
+      }
+    });
+  }
+  
+  // Project card hover effects
+  const projectCards = document.querySelectorAll('.project-card');
+  projectCards.forEach(card => {
+    card.addEventListener('mouseenter', function() {
+      this.style.zIndex = '10';
+    });
+    
+    card.addEventListener('mouseleave', function() {
+      this.style.zIndex = '1';
+    });
+  });
 });
