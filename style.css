@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@400;500;600;700&display=swap');
-@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css");
+ @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css");
 
 /* Reset some default styles */
 * {
@@ -284,6 +284,7 @@ a span {
   font-family: sans-serif;
   font-size: 0.9rem;
   font-weight: 500;
+  text-transform: uppercase;
   letter-spacing: 1px;
   padding: 0.5rem 0;
   transition: color 0.3s ease;
@@ -333,8 +334,8 @@ a span {
 }
 
 .section-header h2 {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 3.5rem;
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 1.5rem;
   color: #fff;
   letter-spacing: 2px;
   margin-bottom: 15px;
@@ -354,8 +355,8 @@ a span {
 }
 
 .company-tagline {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 4.5rem;
+  font-family:  system-ui, -apple-system, sans-serif;
+  font-size: 1.5rem;
   color: #fff;
   letter-spacing: 3px;
   line-height: 1;
@@ -363,7 +364,7 @@ a span {
 }
 
 .tagline-sub {
-  font-size: 1.8rem;
+  font-size: 1.2rem;
   color: var(--accent-color);
   font-family: 'Poppins', sans-serif;
   font-weight: 300;
@@ -409,12 +410,9 @@ a span {
 }
 
 .service-card {
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 10px;
   padding: 40px 25px;
   text-align: center;
   transition: transform 0.3s ease, background 0.3s ease;
-  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .service-card:hover {
@@ -441,7 +439,7 @@ a span {
 }
 
 .service-card h3 {
-  font-size: 1.5rem;
+ font-size: 1.5rem;
   margin-bottom: 15px;
   color: #fff;
 }
@@ -465,16 +463,14 @@ a span {
 }
 
 .feature-item {
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 10px;
   padding: 40px 25px;
   text-align: center;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+ 
 }
 
 .feature-number {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 3.5rem;
+  font-family:  system-ui, -apple-system, sans-serif;
+  font-size: 1.5rem;
   color: var(--primary-blue);
   margin-bottom: 15px;
   line-height: 1;
@@ -567,10 +563,8 @@ a span {
 }
 
 .testimonial-card {
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 10px;
+   border-radius: 10px;
   padding: 40px 30px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
   position: relative;
 }
 
@@ -622,8 +616,8 @@ a span {
 }
 
 .cta-container h2 {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 3.5rem;
+  font-family:  system-ui, -apple-system, sans-serif;
+ font-size: 1.5rem;
   color: #fff;
   margin-bottom: 20px;
   letter-spacing: 2px;
@@ -651,6 +645,7 @@ a span {
   padding: 16px 35px;
   border-radius: 50px;
   font-weight: 600;
+  text-transform: uppercase;
   letter-spacing: 1px;
   transition: all 0.3s ease;
   border: none;
@@ -698,9 +693,9 @@ a span {
 .contact-item {
   text-align: center;
   padding: 40px 25px;
-  background: rgba(255, 255, 255, 0.05);
+ 
   border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+ 
 }
 
 .contact-icon {
@@ -833,7 +828,6 @@ a span {
 .newsletter-form input {
   padding: 14px 20px;
   border-radius: 5px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
   background: rgba(255, 255, 255, 0.05);
   color: #fff;
   font-size: 0.95rem;
@@ -901,9 +895,8 @@ a span {
   }
   
   .slider .list .items .content h2 {
-    font-size: 6em;
+   font-size: 1.5rem;
   }
-  
   .slider .list .image {
     width: 300px;
     height: 300px;
@@ -937,16 +930,15 @@ a span {
   }
   
   .company-tagline {
-    font-size: 3.2rem;
+    font-size: 1.5rem;
   }
   
   .section-header h2 {
-    font-size: 2.8rem;
+    font-size: 1.5rem;
   }
   
   .cta-container h2 {
-    font-size: 2.8rem;
-  }
+    font-size: 1.5rem;}
   
   .cta-buttons {
     flex-direction: column;
@@ -962,23 +954,22 @@ a span {
 
 @media (max-width: 480px) {
   .slider .list .items .content h2 {
-    font-size: 4em;
-  }
+  font-size: 1.5rem;}
   
   .company-tagline {
-    font-size: 2.5rem;
+   font-size: 1.5rem;
   }
   
   .tagline-sub {
-    font-size: 1.4rem;
+    font-size: 1.5rem;
   }
   
   .section-header h2 {
-    font-size: 2.2rem;
+   font-size: 1.5rem;
   }
   
   .cta-container h2 {
-    font-size: 2.2rem;
+   font-size: 1.5rem;
   }
   
   .footer-grid {
