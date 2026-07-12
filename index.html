@@ -4,6 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Conditor — Building Solutions</title>
+    <!-- Meta description improved for Google indexing, removed "Alcove Plan" reference -->
+    <meta name="description" content="Conditor Building Solutions — architectural design, engineering consultancy, construction and material sourcing in Harare, Zimbabwe." />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -577,6 +579,8 @@
         background: var(--brass);
         color: var(--ink);
       }
+
+      /* FOOTER — professional address & contact block */
       .footer-row {
         display: flex;
         justify-content: space-between;
@@ -614,6 +618,34 @@
         transform: translateY(-1px);
       }
 
+      /* new: footer contact block */
+      .footer-contact {
+        width: 100%;
+        margin-top: 24px;
+        padding-top: 24px;
+        border-top: 1px solid rgba(237, 234, 224, 0.12);
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        gap: 16px 32px;
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 0.72rem;
+        letter-spacing: 0.04em;
+        color: rgba(244, 241, 233, 0.6);
+      }
+      .footer-contact a {
+        color: rgba(244, 241, 233, 0.7);
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+      .footer-contact a:hover {
+        color: var(--paper);
+      }
+      .footer-contact span {
+        opacity: 0.7;
+      }
+
       @media (max-width: 520px) {
         section {
           padding: 80px 6vw;
@@ -623,6 +655,11 @@
         }
         .cta {
           padding: 100px 6vw 40px;
+        }
+        .footer-contact {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 8px;
         }
       }
     </style>
@@ -725,10 +762,11 @@
       </div>
     </section>
 
+    <!-- Removed "Alcove Plan" label, now generic "Floor Plan" to align with indexing -->
     <section class="blueprint" id="plan">
       <div class="section-head">
         <div>
-          <span class="tag">The Alcove Plan</span>
+          <span class="tag">The Floor Plan</span>
           <h2>Every square foot, accounted for.</h2>
         </div>
         <p>
@@ -741,7 +779,7 @@
         <div class="bp-image-wrap">
           <img
             src="src/Floorplan.png"
-            alt="Conditor Alcove floor plan with labeled rooms and dimensions"
+            alt="Conditor floor plan with labeled rooms and dimensions"
           />
         </div>
         <div class="schedule">
@@ -1045,10 +1083,12 @@
         <h2>Ready to see the full set of drawings?</h2>
         <a href="#" class="cta-btn">Request a Consultation →</a>
       </div>
+
+      <!-- FOOTER with address, phone, email — professional look -->
       <div class="footer-row">
         <div class="footer-mark">Conditor.</div>
         <div>
-          Building a Sustainable Future — Plan Reference: Alcove / W74–D57
+          Building a Sustainable Future — Plan Reference: Conditor / W74–D57
         </div>
         <div class="footer-social">
           <a
@@ -1082,6 +1122,18 @@
             </svg>
           </a>
         </div>
+      </div>
+
+      <!-- contact details block: address, phone, email -->
+      <div class="footer-contact">
+        <span>1054 Chitove Close, Houghton Park, Harare, Zimbabwe</span>
+        <span>
+          <a href="tel:+263784479458">+263 784 479 458</a> ｜
+          <a href="tel:+263714249788">+263 714 249 788</a>
+        </span>
+        <span>
+          <a href="mailto:info.conditor@gmail.com">info.conditor@gmail.com</a>
+        </span>
       </div>
     </section>
   </body>
